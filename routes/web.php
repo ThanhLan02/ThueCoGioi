@@ -8,6 +8,8 @@ use App\Http\Controllers\Backend\UsersController;
 use App\Http\Controllers\Backend\HangController;
 use App\Http\Controllers\Backend\LoaiController;
 use App\Http\Controllers\Backend\KhuyenMaiController;
+use App\Http\Controllers\Backend\TaixeController;
+use App\Http\Controllers\Backend\ThietBiController;
 use App\Http\Middleware\AuthenticateMiddleware;
 use Illuminate\Support\Facades\Response;
 /*
@@ -27,6 +29,11 @@ Route::get('/', function () {
 
 
 Route::get('index', [TrangchuController::class, 'index'])->name('Trangchu.index');
+Route::get('thietbitaixe', [TrangchuController::class, 'thietbitaixe'])->name('Trangchu.thietbitaixe');
+Route::get('{id}/chitietthietbi', [TrangchuController::class, 'chitietthietbi'])->where(['id' => '[0-9]+'])->name
+('Trangchu.chitietthietbi');
+Route::get('{id}/chitiettaixe', [TrangchuController::class, 'chitiettaixe'])->where(['id' => '[0-9]+'])->name
+('Trangchu.chitiettaixe');
 Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.index')->middleware(AuthenticateMiddleware::class);
 Route::get('login', [AuthController::class, 'login'])->name('auth.login');
 Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
@@ -88,3 +95,26 @@ Route::post('{id}/updatekm', [KhuyenMaiController::class, 'updatekm'])->where(['
 Route::get('{id}/deletekhuyenmai', [KhuyenMaiController::class, 'deletekhuyenmai'])->where(['id' => '[0-9]+'])->name
 ('admin.deletekhuyenmai')->middleware(AuthenticateMiddleware::class);
 
+/*TÀI XẾ */
+Route::get('taixe', [TaixeController::class, 'index'])->name('admin.taixe')->middleware(AuthenticateMiddleware::class);
+Route::get('taixecreate', [TaixeController::class, 'taixecreate'])->name('admin.taixecreate')->middleware(AuthenticateMiddleware::class);
+Route::post('taixestore', [TaixeController::class, 'taixestore'])->name('admin.taixestore')->middleware(AuthenticateMiddleware::class);
+Route::get('{id}/updatetaixe', [TaixeController::class, 'updatetaixe'])->where(['id' => '[0-9]+'])->name
+('admin.updatetaixe')->middleware(AuthenticateMiddleware::class);
+Route::post('{id}/updatetx', [TaixeController::class, 'updatetx'])->where(['id' => '[0-9]+'])->name
+('admin.updatetx')->middleware(AuthenticateMiddleware::class);
+
+Route::get('{id}/deletetaixe', [TaixeController::class, 'deletetaixe'])->where(['id' => '[0-9]+'])->name
+('admin.deletetaixe')->middleware(AuthenticateMiddleware::class);
+
+/*THIẾT BỊ */
+Route::get('thietbi', [ThietBiController::class, 'index'])->name('admin.thietbi')->middleware(AuthenticateMiddleware::class);
+Route::get('thietbicreate', [ThietBiController::class, 'thietbicreate'])->name('admin.thietbicreate')->middleware(AuthenticateMiddleware::class);
+Route::post('thietbistore', [ThietBiController::class, 'thietbistore'])->name('admin.thietbistore')->middleware(AuthenticateMiddleware::class);
+Route::get('{id}/updatethietbi', [ThietBiController::class, 'updatethietbi'])->where(['id' => '[0-9]+'])->name
+('admin.updatethietbi')->middleware(AuthenticateMiddleware::class);
+Route::post('{id}/updatetb', [ThietBiController::class, 'updatetb'])->where(['id' => '[0-9]+'])->name
+('admin.updatetb')->middleware(AuthenticateMiddleware::class);
+
+Route::get('{id}/deletethietbi', [ThietBiController::class, 'deletethietbi'])->where(['id' => '[0-9]+'])->name
+('admin.deletethietbi')->middleware(AuthenticateMiddleware::class);

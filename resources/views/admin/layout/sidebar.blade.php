@@ -36,8 +36,8 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Danh mục:</h6>
-                <a class="collapse-item" href="thietbi.php">Thiết bị</a>
-                <a class="collapse-item" href="taixe.php">Tài xế</a>
+                <a class="collapse-item" href="{{( route('admin.thietbi') )}}">Thiết bị</a>
+                <a class="collapse-item" href="{{( route('admin.taixe') )}}">Tài xế</a>
                 <a class="collapse-item" href="{{( route('admin.loai') )}}">Loại thiết bị</a>
                 <a class="collapse-item" href="{{( route('admin.hang') )}}">Hãng thiết bị</a>
                 <a class="collapse-item" href="danhgia.php">Đánh giá</a>

@@ -1,22 +1,3 @@
-<!-- Google font -->
-<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
-
-<!-- Bootstrap -->
-<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
-
-<!-- Slick -->
-<link type="text/css" rel="stylesheet" href="css/slick.css" />
-<link type="text/css" rel="stylesheet" href="css/slick-theme.css" />
-
-<!-- nouislider -->
-<link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
-
-<!-- Font Awesome Icon -->
-<link rel="stylesheet" href="css/font-awesome.min.css">
-
-<!-- Custom stlylesheet -->
-<link type="text/css" rel="stylesheet" href="css/style.css" />
-<link type="text/css" rel="stylesheet" href="css/detail.css" />
 
 <!-- HEADER -->
 <header>
@@ -46,8 +27,8 @@
 				<!-- LOGO -->
 				<div class="col-md-3">
 					<div class="header-logo">
-						<a href="index.php" class="logo">
-							<img src="./img/logo.png" alt="">
+						<a href="{{( route('Trangchu.index') )}}" class="logo">
+							<img src="{{asset('./img/logo.png')}}" alt="">
 						</a>
 					</div>
 				</div>

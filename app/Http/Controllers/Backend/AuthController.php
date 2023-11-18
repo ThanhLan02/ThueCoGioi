@@ -28,6 +28,7 @@ class AuthController extends Controller
         ];
         if(Auth::attempt($credentials)){
             //$role = Auth::user()->quyen_id;
+            $userId = Auth::user()->id;
             return redirect()->route('admin.index')->with('success','Đăng nhập thành công');
         }
         return redirect()->route('auth.login')->with('error','Đăng nhập thất bại!! Email hoặc mật khẩu không chính xác');
