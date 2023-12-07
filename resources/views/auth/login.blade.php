@@ -58,7 +58,7 @@
 			    	    	</label>
 			    	    </div>
 			    		<input class="btn btn-lg btn-success btn-block" type="submit" value="Login"><br/>
-                        <h5 class="text-center"><a href="#" class="text-left">Quên mật khẩu</a> - <a href="dangky.php" class="text-right">Đăng ký</a></h5>
+                        <h5 class="text-center"><a href="#" class="text-left">Quên mật khẩu</a> - <a href="/Dangky" class="text-right">Đăng ký</a></h5>
                         
                         
 			    	</fieldset>

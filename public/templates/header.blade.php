@@ -84,7 +84,7 @@
 
 						<!-- Cart -->
 						<div class="dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" href="cart.php">
+							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" href="/giohang">
 								<i class="fa fa-shopping-cart"></i>
 								<span>Your Cart</span>
 								<div class="qty">3</div>

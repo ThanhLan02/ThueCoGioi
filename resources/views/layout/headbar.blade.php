@@ -1,4 +1,3 @@
-
 <!-- HEADER -->
 <header>
 	<!-- TOP HEADER -->
@@ -11,8 +10,15 @@
 			</ul>
 			<ul class="header-links pull-right">
 				<li><a href="#"><i class="fa fa-dollar"></i> VND</a></li>
-				<li><a href="/login"><i class="fa fa-user-o"></i> My Account</a></li>
-				<li><a href="/logout"><i class="fa fa-key"></i> Dang xuat</a></li>
+				
+					@if(Session::has('username'))
+						<li><a href="/hoso/{{Session::get('user')}}"><i class="fa fa-user"></i> {{Session::get('username')}}</a></li>
+					@else
+						<li><a href="/login"><i class="fa fa-key"></i>Đăng nhập</a></li>
+					@endif
+                        <li><i class="fa fa-key"></i> <a href="/logout">Logout</a></li>
+
+				
 			</ul>
 		</div>
 	</div>
@@ -65,7 +71,7 @@
 
 						<!-- Cart -->
 						<div class="dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" href="cart.php">
+							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" href="/giohang">
 								<i class="fa fa-shopping-cart"></i>
 								<span>Your Cart</span>
 								<div class="qty">3</div>

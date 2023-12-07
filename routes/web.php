@@ -10,6 +10,10 @@ use App\Http\Controllers\Backend\LoaiController;
 use App\Http\Controllers\Backend\KhuyenMaiController;
 use App\Http\Controllers\Backend\TaixeController;
 use App\Http\Controllers\Backend\ThietBiController;
+use App\Http\Controllers\Backend\Dangkycontroller;
+use App\Http\Controllers\Backend\HosoController;
+use App\Http\Controllers\Backend\ThietbiUserController;
+use App\Http\Controllers\Backend\ThueController;
 use App\Http\Middleware\AuthenticateMiddleware;
 use Illuminate\Support\Facades\Response;
 /*
@@ -23,10 +27,10 @@ use Illuminate\Support\Facades\Response;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
-
+// Route::get('/', function () {
+//     return view('index');
+// });
+Route::get('/', [TrangchuController::class, 'index'])->name('Trangchu.index');
 
 Route::get('index', [TrangchuController::class, 'index'])->name('Trangchu.index');
 Route::get('thietbitaixe', [TrangchuController::class, 'thietbitaixe'])->name('Trangchu.thietbitaixe');
@@ -38,6 +42,34 @@ Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.inde
 Route::get('login', [AuthController::class, 'login'])->name('auth.login');
 Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
 Route::post('dologin', [AuthController::class, 'dologin'])->name('auth.dologin');
+Route::get('Dangky', [Dangkycontroller::class, 'Dangky'])->name('Dangky.Dangky');
+Route::post('DangkySubmit', [Dangkycontroller::class, 'DangkySubmit'])->name('Dangky.DangkySubmit');
+Route::get('hoso/{id}', [HosoController::class, 'hoso'])->where(['id' => '[0-9]+'])->name
+('Hoso.hoso');
+
+Route::get('thietbiuser', [ThietbiUserController::class, 'index'])->name('thietbiuser.thietbiuser')->middleware(AuthenticateMiddleware::class);
+Route::get('thietbiusercreate', [ThietbiUserController::class, 'thietbiusercreate'])->name('thietbiuser.thietbiusercreate')->middleware(AuthenticateMiddleware::class);
+Route::post('thietbiuserstore', [ThietbiUserController::class, 'thietbiuserstore'])->name('thietbiuser.thietbiuserstore')->middleware(AuthenticateMiddleware::class);
+Route::get('{id}/updatethietbiuser', [ThietbiUserController::class, 'updatethietbiuser'])->where(['id' => '[0-9]+'])->name
+('thietbiuser.updatethietbiuser')->middleware(AuthenticateMiddleware::class);
+Route::post('{id}/updatetbu', [ThietbiUserController::class, 'updatetbu'])->where(['id' => '[0-9]+'])->name
+('thietbiuser.updatetbu')->middleware(AuthenticateMiddleware::class);
+
+Route::get('{id}/deletethietbiuser', [ThietbiUserController::class, 'deletethietbiuser'])->where(['id' => '[0-9]+'])->name
+('thietbiuser.deletethietbiuser')->middleware(AuthenticateMiddleware::class);
+
+
+
+//THUÊ
+Route::get('giohang', [ThueController::class, 'giohang'])->name
+('giohang')->middleware(AuthenticateMiddleware::class);
+Route::post('/thuethietbi', [ThueController::class, 'themgiothietbi'])->name
+('thuethietbi.themgiohang')->middleware(AuthenticateMiddleware::class);
+Route::post('/thuetaixe', [ThueController::class, 'themgiotaixe'])->name
+('thuethietbi.themgiohangtx')->middleware(AuthenticateMiddleware::class);
+    
+ 
+
 
 /*USER */
 // Route::group(['prefix' => 'admin'], function(){
