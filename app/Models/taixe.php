@@ -31,4 +31,8 @@ class taixe extends Model
     {
         return $this->belongsTo(khuyenmai::class, 'KhuyenMai_ID', 'id');
     }
+    public function user ()
+    {
+        return $this->belongsTo(User::class, 'NguoiDung_ID', 'id');
+    }
 }

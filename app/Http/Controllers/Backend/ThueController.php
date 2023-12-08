@@ -25,7 +25,7 @@ class ThueController extends Controller
     public function giohang(){
 
         $ghthietbis = giohang_thietbi::where('NguoiDung_ID',Session::get('user'))->get();
-        $ghtaixes = giohang_taixe::where('NguoiDung_ID',Session::get('user'));
+        $ghtaixes = giohang_taixe::where('NguoiDung_ID',Session::get('user'))->get();
         return view('giohang',compact('ghthietbis','ghtaixes'));
     }
     public function themgiothietbi(Request $request){
@@ -47,14 +47,14 @@ class ThueController extends Controller
         $id = $request->input('taixe_id');
         $taixe = taixe::findOrFail($id);
         //dd($thietbiId);
-        $giohang_thietbi = new giohang_thietbi();
-        $giohang_thietbi->ThietBi_ID = $id;
-        $giohang_thietbi->ThietBi_Ten = $taixe->TenTB;
-        $giohang_thietbi->ThietBi_Gia = $taixe->GiaKM;
-        $giohang_thietbi->ThietBi_Anh = $taixe->Anh;
-        $giohang_thietbi->TongTien = $taixe->GiaKM;
-        $giohang_thietbi->NguoiDung_ID = Session::get('user');
-        $giohang_thietbi->save();
+        $giohang_taixe = new giohang_taixe();
+        $giohang_taixe->TaiXe_ID = $id;
+        $giohang_taixe->TaiXe_Ten = $taixe->TenTX;
+        $giohang_taixe->TaiXe_Gia = $taixe->GiaKM;
+        $giohang_taixe->TaiXe_Anh = $taixe->Anh;
+        $giohang_taixe->TongTien = $taixe->GiaKM;
+        $giohang_taixe->NguoiDung_ID = Session::get('user');
+        $giohang_taixe->save();
         return redirect()->route('Trangchu.index')->with('Thành công','Thêm thành công');
     }
 }
