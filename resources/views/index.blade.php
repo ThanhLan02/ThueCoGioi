@@ -1,18 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layout.master')
 
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Document</title>
-	<title>Electro - Thuê Cơ giới</title>
-</head>
-
-<body>
-	<?php
-	include "./templates/header.blade.php";
-	?>
+@section('main-content')
 
 	<!-- NAVIGATION -->
 	<nav id="navigation">
@@ -445,17 +433,4 @@
 		<!-- /container -->
 	</div>
 	<!-- /NEWSLETTER -->
-	<?php
-	include "./templates/footer.blade.php";
-	?>
-
-	<!-- jQuery Plugins -->
-	<script src="{{ URL::asset('js/jquery.min.js') }}"></script>
-	<script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
-	<script src="{{ URL::asset('js/slick.min.js') }}"></script>
-	<script src="{{ URL::asset('js/nouislider.min.js') }}"></script>
-	<script src="{{ URL::asset('js/jquery.zoom.min.js') }}"></script>
-	<script src="{{ URL::asset('js/main.js') }}"></script>
-</body>
-
-</html>
+@endsection

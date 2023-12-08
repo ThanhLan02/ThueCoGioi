@@ -15,7 +15,7 @@ class DashboardController extends Controller
     public function index(){
         if(Session::get('user') == 1)
         {
-            return view('admin.index')->with('Admin','Vao trang admin');
+            return view('admin.index')->with('success','Vao trang admin');
         }else
         {
             return redirect()->route('Trangchu.index')->with('error','Bạn không có quyền truy cập vào trang này!!');

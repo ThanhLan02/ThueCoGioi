@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Backend;
 use App\Models\thietbi;
 use App\Models\taixe;
+use App\Models\giohang_taixe;
+use App\Models\giohang_thietbi;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 
 class TrangchuController extends Controller
@@ -18,6 +21,8 @@ class TrangchuController extends Controller
 
         $thietbis2 = thietbi::paginate(3);
         $taixes2 = taixe::paginate(3);
+        $sl = giohang_thietbi::count() + giohang_taixe::count();
+        Session::put('soluong',$sl);
         return view('index',compact('thietbis1','taixes1','thietbis2','taixes2'));
     }
     public function thietbitaixe(){
