@@ -67,12 +67,12 @@
                             <td>{{$thietbi->GiaThue}}</td>
                             <td>{{$thietbi->GiaKM}}</td>
                             <td>{{$thietbi->TinhTrang}}</td>
-                            <td>{{$thietbi->Loai_ID}}</td>
-                            <td>{{$thietbi->Hang_ID}}</td>
-                            <td>{{$thietbi->KhuyenMai_ID}}</td>
+                            <td>{{$thietbi->loai->TenLoai}}</td>
+                            <td>{{$thietbi->hang->TenHang}}</td>
+                            <td>{{$thietbi->khuyenmai->TenKM}}</td>
                             <td>{{$thietbi->SoSao}}</td>
                             <td>{{$thietbi->SoDanhGIa}}</td>
-                            <td>{{$thietbi->NguoiDung_ID}}</td>
+                            <td>{{$thietbi->user->hoten}}</td>
                             <td><a href="{{( route('admin.updatethietbi',$thietbi->id) )}}" class="btn btn-sm rounded-0 btn-success" title="update"><i class="fas fa-pencil-alt"></i></a>
                                 <a href="{{( route('admin.deletethietbi',$thietbi->id) )}}" class="btn btn-sm rounded-0 btn-danger" title="delete"><i class="fas fa-trash"></i></a>
                                 <form action="{{route('admin.duyettb',$thietbi->id)}}" method="post">

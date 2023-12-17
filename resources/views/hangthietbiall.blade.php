@@ -33,9 +33,9 @@
             <div class="col-md-12">
                 <ul class="breadcrumb-tree">
                     <li><a href="#">Trang Chủ</a></li>
-                    <li class="active"><a href="#">Tất cả thiết bị & tài xế</a></li>
-                    <!-- <li><a href="#">Accessories</a></li>
-							<li class="active">Headphones (227,490 Results)</li> -->
+                    <li><a href="#">Tất cả thiết bị & tài xế</a></li>
+                    <li><a href="#">Thuê</a></li>
+					<li class="active">Thiết bị ({{$s1}} Kết quả)</li>
                 </ul>
             </div>
         </div>
@@ -59,10 +59,11 @@
                     <div class="checkbox-filter">
 
                         <div class="input-checkbox">
-                            <input type="checkbox" id="category-1">
+                            <input type="checkbox" id="category-1" checked>
                             <label for="category-1">
                                 <span></span>
-                                Thiết bị cơ giới
+                                <a href="/thietbiall">Thiết bị cơ giới</a>
+                                
                                 <small>({{$s1}})</small>
                             </label>
                         </div>
@@ -71,23 +72,49 @@
                             <input type="checkbox" id="category-2">
                             <label for="category-2">
                                 <span></span>
-                                Tài xế
-                                <small>({{$s2}})</small>
+                                <a href="/taixeall">Tài xế</a>
+                                
+                                <small>({{$s1}})</small>
                             </label>
                         </div>
                     </div>
                 </div>
                 <!-- /aside Widget -->
 
+                
 
+                <div class="aside">
+                    <h3 class="aside-title">Hãng</h3>
+                    <div class="checkbox-filter">
+                        @foreach($hang as $item)
+                        @if($id == $item->id)
+                        <div class="input-checkbox">
+                            <input type="checkbox" id="brand-1" checked>
+                            <label for="brand-1">
+                                <span></span>
+                                <a href="/hangthietbiall/{{$item->id}}">{{$item->TenHang}}</a>
+                            </label>
+                        </div>
+                        @else
+                        <div class="input-checkbox">
+                            <input type="checkbox" id="brand-1">
+                            <label for="brand-1">
+                                <span></span>
+                                <a href="/hangthietbiall/{{$item->id}}">{{$item->TenHang}}</a>
+                            </label>
+                        </div>
+                        @endif
+                        @endforeach
+                    </div>
+                </div>
 
                 <!-- aside Widget -->
                 <div class="aside">
-                    <h3 class="aside-title">HOT</h3>
+                <h3 class="aside-title">HOT</h3>
                     @foreach($hot as $item)
                     <div class="product-widget">
                         <div class="product-img">
-                            <img src="./img/{{$item->Anh}}" alt="">
+                            <img src="{{asset('./img')}}/{{$item->Anh}}" alt="">
                         </div>
                         <div class="product-body">
                             <p class="product-category"><a href="/{{$item->id}}/chitietthietbi">{{$item->loai->TenLoai}} </a></p>
@@ -96,6 +123,7 @@
                         </div>
                     </div>
                     @endforeach
+
                     
                 </div>
                 <!-- /aside Widget -->
@@ -139,7 +167,7 @@
                         <div class="col-md-4 col-xs-6">
                             <div class="product">
                                 <div class="product-img">
-                                    <img src="./img/{{$thietbi->Anh}}" alt="">
+                                    <img src="{{asset('./img')}}/{{$thietbi->Anh}}" alt="">
                                     <div class="product-label">
                                         <span class="sale">{{$thietbi->khuyenmai->TenKM }}</span>
                                         <span class="new">NEW</span>
@@ -173,61 +201,14 @@
                         </div>
                         @endforeach
                         <!-- /product -->
-                        <!-- product -->
-                        @foreach($taixes as $taixe)
-                        <form action="{{ route('thuethietbi.themgiohangtx') }}" method="POST">
-                            @csrf
-                            <div class="col-md-4 col-xs-6">
-                                <div class="product">
-                                    <div class="product-img">
-                                        <img src="./img/{{$taixe->Anh}}" alt="">
-                                        <div class="product-label">
-                                            <span class="sale">{{$taixe->khuyenmai->TenKM}}</span>
-                                            <span class="new">NEW</span>
-                                        </div>
-                                    </div>
-                                    <div class="product-body">
-                                        <p class="product-category">TÀI XẾ</p>
-                                        <h3 class="product-name"><a href="#">{{$taixe->TenTX}}</a></h3>
-                                        <h4 class="product-price">{{$taixe->GiaKM}} VNĐ <del class="product-old-price">{{$taixe->GiaThue}} VNĐ</del></h4>
-                                        <div class="product-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <div class="product-btns">
-                                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                                            <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-                                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-                                        </div>
-                                    </div>
-                                    <div class="add-to-cart">
-                                        <div class="form-group" style="display: none;">
-                                            <input type="text" class="form-control" name="taixe_id" value="{{$taixe->id}}">
-                                        </div>
-                                        <button class="add-to-cart-btn" type="submit"><i class="fa fa-shopping-cart"></i>
-                                            Thêm vào giỏ hàng </button>
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach
-                            <!-- /product -->
-
+                        
                 </div>
                 <!-- /store products -->
 
                 <!-- store bottom filter -->
                 <div class="store-filter clearfix">
-                    <span class="store-qty">Showing 20-100 products</span>
-                    <ul class="store-pagination">
-                        <li class="active">1</li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                    </ul>
+                    <span class="store-qty">6 Thiết bị</span>
+                    {{$thietbis->links('pagination::bootstrap-4')}}
                 </div>
                 <!-- /store bottom filter -->
             </div>

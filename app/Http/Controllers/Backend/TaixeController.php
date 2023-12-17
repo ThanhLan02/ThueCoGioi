@@ -139,4 +139,11 @@ class TaixeController extends Controller
             return redirect()->route('admin.taixe')->with('Success','Xóa không thành công');
         }
     }
+    public function duyettx($id)
+    {
+        $taixe=taixe::findOrFail($id);
+        $taixe->TrangThai = "1";
+        $taixe->save();
+        return redirect()->back()->with('Success','duyệt thành công');
+    }
 }

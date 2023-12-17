@@ -81,7 +81,7 @@
                                 <td>{{$taixe->SoDanhGia}}</td>
                                 <td><a href="{{( route('taixeuser.updatetaixeuser',$taixe->id) )}}" class="btn btn-sm rounded-0 btn-success" title="update"><i class="fa fa-pencil"></i></a>
                                     <a href="{{( route('taixeuser.deletetaixeuser',$taixe->id) )}}" class="btn btn-sm rounded-0 btn-danger" title="delete"><i class="fa fa-trash"></i></a>
-                                    <a href="" class="btn btn-sm rounded-0 btn-primary">Thêm ảnh</a>
+                                    <a href="{{( route('taixeuser.themanhtxuser',$taixe->id) )}}" class="btn btn-sm rounded-0 btn-primary" >Thêm ảnh</a>
                                 </td>
                             </tr>
                             @endforeach

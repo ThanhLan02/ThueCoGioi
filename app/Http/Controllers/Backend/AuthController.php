@@ -5,9 +5,13 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\reset_code;
 use App\Http\Requests\AuthRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\DoimatkhauRequest;
+use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
     public function __construct()
@@ -62,5 +66,50 @@ class AuthController extends Controller
  
         $request->session()->regenerateToken();
         return redirect()->route('auth.login');
+    }
+    public function quenmatkhau()
+    {
+        return view('auth.quenmatkhau');
+    }
+    public function quenmatkhaustore(Request $request)
+    {
+        $users = User::all();
+        foreach($users as $item)
+        {
+            if($item->email == $request->input('email'))
+            {
+                $randomNumber = random_int(1000, 9999);
+                $reset_code = new reset_code();
+                $reset_code->code = $randomNumber;
+                $reset_code->save();
+                $mailuser = $request->input('email');
+                Mail::send('auth.guimaxacminh',compact('randomNumber'), function($email) use($mailuser){
+                    $email->subject('Mã xác nhận');
+                    $email->to($mailuser,'Mã Xác Nhận');
+                });
+                return view('auth.xacminh',compact('mailuser'));
+            }
+        }
+        return redirect()->back()->with('Error','Email không chính xác');
+    }
+    public function xacminhstore(Request $request)
+    {
+        $find = reset_code::where('code',$request->input('code'))->get();
+        $mail = $request->input('email');
+        if($find)
+        {
+            return view('auth.doimatkhau',compact('mail'));
+        }
+    }
+    public function doimatkhau()
+    {
+        return view('auth.doimatkhau');
+    }
+    public function doimatkhaustore(DoimatkhauRequest $request)
+    {
+        $user = User::where('email',$request->input('email'))->first();
+        $user->password = Hash::make($request->input('password'));
+        $user->save();
+        return redirect()->route('auth.login')->with('success','Đổi mật khẩu thành công');
     }
 }

@@ -23,6 +23,7 @@ use App\Models\taixe;
 use App\Models\thietbi;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Mail;
 class ThueController extends Controller
 {
     public function giohang(){
@@ -203,6 +204,14 @@ class ThueController extends Controller
             $hd = hoadon::findOrFail($chitiethd_thietbi->HoaDon_ID);
             $hd->TinhTrang = "1";
             $hd->save();
+            $cthdtb = chitiethd_thietbi::where('HoaDon_ID',$hd->id)->get();
+            $cthdtx = chitiethd_taixe::where('HoaDon_ID',$hd->id)->get();
+            $nn = User::findOrFail($hd->NguoiNhan);
+            $mailuser = $nn->email;
+            Mail::send('guihoadon',compact('hd','cthdtb','cthdtx'), function($email) use($mailuser){
+                $email->subject('Xác nhận thuê');
+                $email->to($mailuser,'test');
+            });
         }
         return redirect()->back()->with('Success','duyệt thành công');
     }

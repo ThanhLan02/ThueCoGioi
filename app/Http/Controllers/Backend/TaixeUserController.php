@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\quyen;
 use App\Models\hang;
 use App\Models\taixe;
+use App\Models\anh_tx;
 use App\Models\loaixe;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -130,5 +131,16 @@ class TaixeUserController extends Controller
         } else {
             return redirect()->route('taixeuser.taixeuser')->with('Success','Xóa không thành công');
         }
+    }
+    public function themanhtxuser($id){
+        $taixe=taixe::findOrFail($id);
+        return view('themanhtxuser',compact('taixe'));
+    }
+    public function themanhtxuserstore($id,Request $request){
+        $anh_tb = new anh_tx();
+        $anh_tb->TaiXe_ID = $id;
+        $anh_tb->anh = $request->input('anh');
+        $anh_tb->save();
+        return redirect()->back()->with('Success','Thêm thành công');
     }
 }

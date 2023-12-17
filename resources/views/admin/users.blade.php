@@ -11,7 +11,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="adminhome.php">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -23,7 +23,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="adminhome.php">
+                <a class="nav-link" href="/dashboard    ">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Trang Chủ</span></a>
             </li>
@@ -45,8 +45,8 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Danh mục:</h6>
-                    <a class="collapse-item" href="thietbi.php">Thiết bị</a>
-                <a class="collapse-item" href="taixe.php">Tài xế</a>
+                    <a class="collapse-item" href="/thietbi">Thiết bị</a>
+                <a class="collapse-item" href="/taixe">Tài xế</a>
                 <a class="collapse-item" href="{{( route('admin.loai') )}}">Loại thiết bị</a>
                 <a class="collapse-item" href="{{( route('admin.hang') )}}">Hãng thiết bị</a>
                 <a class="collapse-item" href="danhgia.php">Đánh giá</a>
@@ -64,7 +64,7 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Quản lý đơn hàng:</h6>
-                        <a class="collapse-item" href="donhang.php">Đơn hàng</a>
+                        <a class="collapse-item" href="/hoadon">Đơn hàng</a>
                         <a class="collapse-item" href="utilities-border.html">Doanh thu</a>
                         <a class="collapse-item" href="utilities-other.html">Other</a>
                     </div>

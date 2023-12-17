@@ -75,14 +75,22 @@
                             <td>{{$taixe->MoTa}}</td>
                             <td>{{$taixe->GiaThue}}</td>
                             <td>{{$taixe->GiaKM}}</td>
-                            <td>{{$taixe->KhuyenMai_ID}}</td>
-                            <td>{{$taixe->TrangThai}}</td>
+                            <td>{{$taixe->khuyenmai->TenKM}}</td>
+                            @if($taixe->TrangThai == 0)
+                            <td>Đang duyệt</td>
+                            @else
+                            <td>Đã duyệt</td>
+                            @endif
                             <td>{{$taixe->SoSao}}</td>
                             <td>{{$taixe->SoDanhGia}}</td>
-                            <td>{{$taixe->NguoiDung_ID}}</td>
-                            <td><a href="{{( route('admin.updatetaixe',$taixe->id) )}}" class="btn btn-sm rounded-0 btn-success" title="update"><i class="fas fa-pencil-alt"></i></a> |
-                                            <a href="{{( route('admin.deletetaixe',$taixe->id) )}}" class="btn btn-sm rounded-0 btn-danger" title="delete"><i class="fas fa-trash"></i></a>
-                                        </td>
+                            <td>{{$taixe->user->hoten}}</td>
+                            <td><a href="{{( route('admin.updatetaixe',$taixe->id) )}}" class="btn btn-sm rounded-0 btn-success" title="update"><i class="fas fa-pencil-alt"></i></a>
+                                <a href="{{( route('admin.deletetaixe',$taixe->id) )}}" class="btn btn-sm rounded-0 btn-danger" title="delete"><i class="fas fa-trash"></i></a>
+                                <form action="{{route('admin.duyettx',$taixe->id)}}" method="post">
+                                    @csrf
+                                    <button type="submit" name="send" value="send" class="btn btn-primary align-center">Duyệt</button>
+                                </form>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

@@ -23,8 +23,7 @@
                             <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
                             <h5 class="my-3">Trần Thanh Lân</h5>
                             <div class="d-flex justify-content-center mb-2">
-                                <button type="submit" class="btn btn-primary" name="change">Đổi mật khẩu</button>
-                                <button type="button" class="btn btn-outline-primary ms-1">Đổi thông tin</button>
+
                                 <button type="button" class="btn btn-outline-primary ms-1"><a href="/thietbiuser">Quản lý cho thuê thiết bị</a></button>
                                 <button type="button" class="btn btn-outline-primary ms-1"><a href="/taixeuser">Quản lý cho thuê tài xế</a></button>
                                 <button type="button" class="btn btn-outline-primary ms-1"><a href="/donhang">Lịch sử giao dịch </a></button>

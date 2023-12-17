@@ -40,7 +40,7 @@
                 <a class="collapse-item" href="{{( route('admin.taixe') )}}">Tài xế</a>
                 <a class="collapse-item" href="{{( route('admin.loai') )}}">Loại thiết bị</a>
                 <a class="collapse-item" href="{{( route('admin.hang') )}}">Hãng thiết bị</a>
-                <a class="collapse-item" href="danhgia.php">Đánh giá</a>
+                <a class="collapse-item" href="">Đánh giá</a>
                 <a class="collapse-item" href="{{( route('admin.khuyenmai') )}}">Khuyến Mãi</a>
             </div>
         </div>
@@ -55,7 +55,7 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Quản lý đơn hàng:</h6>
-                <a class="collapse-item" href="donhang.php">Đơn hàng</a>
+                <a class="collapse-item" href="/hoadon">Đơn hàng</a>
                 <a class="collapse-item" href="utilities-border.html">Doanh thu</a>
                 <a class="collapse-item" href="utilities-other.html">Other</a>
             </div>

@@ -15,6 +15,7 @@ use App\Http\Controllers\Backend\HosoController;
 use App\Http\Controllers\Backend\ThietbiUserController;
 use App\Http\Controllers\Backend\ThueController;
 use App\Http\Controllers\Backend\TaixeUserController;
+use App\Http\Controllers\Backend\HoadonController;
 use App\Http\Middleware\AuthenticateMiddleware;
 use Illuminate\Support\Facades\Response;
 /*
@@ -36,6 +37,7 @@ Route::get('/', [TrangchuController::class, 'index'])->name('Trangchu.index');
 Route::get('index', [TrangchuController::class, 'index'])->name('Trangchu.index');
 Route::get('thietbitaixe', [TrangchuController::class, 'thietbitaixe'])->name('Trangchu.thietbitaixe');
 Route::get('thietbiall', [TrangchuController::class, 'thietbiall'])->name('Trangchu.thietbiall');
+Route::get('hangthietbiall/{id}', [TrangchuController::class, 'hangthietbiall'])->name('Trangchu.hangthietbiall');
 Route::get('taixeall', [TrangchuController::class, 'taixeall'])->name('Trangchu.taixeall');
 Route::get('{id}/chitietthietbi', [TrangchuController::class, 'chitietthietbi'])->where(['id' => '[0-9]+'])->name
 ('Trangchu.chitietthietbi');
@@ -68,11 +70,6 @@ Route::get('{id}/themanhtbuser', [ThietbiUserController::class, 'themanhtbuser']
 Route::post('{id}/themanhtbuserstore', [ThietbiUserController::class, 'themanhtbuserstore'])->where(['id' => '[0-9]+'])
 ->name('thietbiuser.themanhtbuserstore')->middleware(AuthenticateMiddleware::class);
 
-Route::get('{id}/themanhtxuser', [ThietbiUserController::class, 'themanhtxuser'])
-->where(['id' => '[0-9]+'])->name('taixeuser.themanhtxuser')->middleware(AuthenticateMiddleware::class);
-Route::post('{id}/themanhtxuserstore', [ThietbiUserController::class, 'themanhtxuserstore'])->where(['id' => '[0-9]+'])
-->name('taixeuser.themanhtxuserstore')->middleware(AuthenticateMiddleware::class);
-
 
 Route::get('taixeuser', [TaixeUserController::class, 'index'])->name('taixeuser.taixeuser')->middleware(AuthenticateMiddleware::class);
 Route::get('taixeusercreate', [TaixeUserController::class, 'taixeusercreate'])->name('taixeuser.taixeusercreate')->middleware(AuthenticateMiddleware::class);
@@ -83,9 +80,9 @@ Route::post('{id}/updatetbu', [TaixeUserController::class, 'updatetbu'])->where(
 ('taixeuser.updatetbu')->middleware(AuthenticateMiddleware::class);
 Route::get('{id}/deletetaixeuser', [TaixeUserController::class, 'deletetaixeuser'])->where(['id' => '[0-9]+'])->name
 ('taixeuser.deletetaixeuser')->middleware(AuthenticateMiddleware::class);
-Route::get('{id}/themanhtxuser', [ThietbiUserController::class, 'themanhtxuser'])
+Route::get('{id}/themanhtxuser', [TaixeUserController::class, 'themanhtxuser'])
 ->where(['id' => '[0-9]+'])->name('taixeuser.themanhtxuser')->middleware(AuthenticateMiddleware::class);
-Route::post('{id}/themanhtxuserstore', [ThietbiUserController::class, 'themanhtxuserstore'])->where(['id' => '[0-9]+'])
+Route::post('{id}/themanhtxuserstore', [TaixeUserController::class, 'themanhtxuserstore'])->where(['id' => '[0-9]+'])
 ->name('taixeuser.themanhtxuserstore')->middleware(AuthenticateMiddleware::class);
 //ĐƠN HÀNG
 Route::get('donhang', [ThueController::class, 'donhang'])->name('thuethietbi.donhang')->middleware(AuthenticateMiddleware::class);
@@ -186,7 +183,8 @@ Route::get('{id}/updatetaixe', [TaixeController::class, 'updatetaixe'])->where([
 ('admin.updatetaixe')->middleware(AuthenticateMiddleware::class);
 Route::post('{id}/updatetx', [TaixeController::class, 'updatetx'])->where(['id' => '[0-9]+'])->name
 ('admin.updatetx')->middleware(AuthenticateMiddleware::class);
-
+Route::post('{id}/duyettx', [TaixeController::class, 'duyettx'])->where(['id' => '[0-9]+'])->name
+('admin.duyettx')->middleware(AuthenticateMiddleware::class);
 Route::get('{id}/deletetaixe', [TaixeController::class, 'deletetaixe'])->where(['id' => '[0-9]+'])->name
 ('admin.deletetaixe')->middleware(AuthenticateMiddleware::class);
 
@@ -202,3 +200,17 @@ Route::post('{id}/duyettb', [ThietBiController::class, 'duyettb'])->where(['id' 
 ('admin.duyettb')->middleware(AuthenticateMiddleware::class);
 Route::get('{id}/deletethietbi', [ThietBiController::class, 'deletethietbi'])->where(['id' => '[0-9]+'])->name
 ('admin.deletethietbi')->middleware(AuthenticateMiddleware::class);
+
+/*ĐƠN HÀNG */
+Route::get('hoadon', [HoadonController::class, 'index'])->name('admin.hoadon')->middleware(AuthenticateMiddleware::class);
+Route::get('{id}/chitiethoadon', [HoadonController::class, 'chitiethoadon'])->name('admin.chitiethoadon')->middleware(AuthenticateMiddleware::class);
+
+
+Route::get('guimail', [TrangchuController::class, 'guimail']);
+
+Route::get('quenmatkhau', [AuthController::class, 'quenmatkhau'])->name('auth.quenmatkhau');
+Route::post('quenmatkhaustore', [AuthController::class, 'quenmatkhaustore'])->name('auth.quenmatkhaustore');
+Route::get('xacminh', [AuthController::class, 'xacminh'])->name('auth.xacminh');
+Route::post('xacminhstore', [AuthController::class, 'xacminhstore'])->name('auth.xacminhstore');
+Route::get('doimatkhau', [AuthController::class, 'doimatkhau'])->name('auth.doimatkhau');
+Route::post('doimatkhaustore', [AuthController::class, 'doimatkhaustore'])->name('auth.doimatkhaustore');

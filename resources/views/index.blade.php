@@ -37,7 +37,7 @@
 							<img src="./img/shop001.png" alt="">
 						</div>
 						<div class="shop-body">
-							<h3>ALL<br>PRODUCTS</h3>
+							<h3>TẤT CẢ<br>THIẾT BỊ & TÀI XẾ</h3>
 							<a href="{{( route('Trangchu.thietbitaixe') )}}" class="cta-btn">Thuê ngay <i class="fa fa-arrow-circle-right"></i></a>
 						</div>
 					</div>
@@ -202,7 +202,7 @@
 										</div>
 										<div class="product-body">
 											<p class="product-category">Tài Xế</p>
-											<h3 class="product-name"><a href="#">{{$taixe->TenTX}}</a></h3>
+											<h3 class="product-name"><a href="{{$taixe->id}}/chitiettaixe">{{$taixe->TenTX}}</h3>
 											<h4 class="product-price">{{$taixe->GiaThue}} VNĐ<br /><del class="product-old-price">{{$taixe->GiaKM}} VNĐ</del></h4>
 											<div class="product-rating">
 												<i class="fa fa-star"></i>
@@ -250,7 +250,7 @@
 			<div class="row">
 				<div class="col-md-4 col-xs-6">
 					<div class="section-title">
-						<h4 class="title">Thiết Bị & Tài Xế HOT</h4>
+						<h4 class="title">Thiết Bị HOT</h4>
 						<div class="section-nav">
 							<div id="slick-nav-3" class="products-slick-nav"></div>
 						</div>
@@ -276,54 +276,20 @@
 
 						</div>
 
-						<div>
-							@foreach($taixes2 as $taixe)
-							<!-- product widget -->
-							<div class="product-widget">
-								<div class="product-img">
-									<img src="./img/{{$taixe->Anh}}" alt="">
-								</div>
-								<div class="product-body">
-									<p class="product-category">Tài Xế</p>
-									<h3 class="product-name"><a href="#">{{$taixe->TenTX}}</a></h3>
-									<h4 class="product-price">{{$taixe->GiaThue}} VNĐ <del class="product-old-price">{{$taixe->GiaKM}} VNĐ</del></h4>
-								</div>
-							</div>
-							@endforeach
-							<!-- /product widget -->
-						</div>
+						
 					</div>
 				</div>
 
 				<div class="col-md-4 col-xs-6">
 					<div class="section-title">
-						<h4 class="title">Thiết Bị & Tài Xế Mới</h4>
+						<h4 class="title">Tài Xế HOT</h4>
 						<div class="section-nav">
 							<div id="slick-nav-4" class="products-slick-nav"></div>
 						</div>
 					</div>
 
 					<div class="products-widget-slick" data-nav="#slick-nav-4">
-						<div>
-							@foreach($thietbis2 as $thietbi)
-							<!-- product widget -->
-							<div class="product-widget">
-								<div class="product-img">
-									<img src="./img/{{$thietbi->Anh}}" alt="">
-								</div>
-								<div class="product-body">
-									<p class="product-category">{{$thietbi->loai->TenLoai}}</p>
-									<h3 class="product-name"><a href="#">{{$thietbi->TenTB}}</a></h3>
-									<h4 class="product-price">{{$thietbi->GiaThue}} VNĐ <del class="product-old-price">{{$thietbi->GiaKM}} VNĐ</del></h4>
-								</div>
-							</div>
-							@endforeach
-							<!-- /product widget -->
-
-
-						</div>
-
-						<div>
+					<div>
 							@foreach($taixes2 as $taixe)
 							<!-- product widget -->
 							<div class="product-widget">
@@ -339,6 +305,7 @@
 							@endforeach
 							<!-- /product widget -->
 						</div>
+
 					</div>
 				</div>
 
