@@ -131,7 +131,34 @@
                 </div>
             </div>
         </div>
-        <!-- Products tab & slick -->
+        <div class="comment col-md-12">
+        @foreach($danhgias as $item)
+        <div class="user-info">
+            <img src="{{asset('./img')}}/{{$item->user->anh}}" alt="User Avatar">
+            <h4>{{$item->user->hoten}}</h4>
+        </div>
+        <p class="comment-text">{{$item->BinhLuan}} <label class="pull-right" style="font-size: 15px;">{{$item->NgayLap}}</label></p>
+        
+        @endforeach
+            <div class="form-group">
+                <form action="/{{$taixe->id}}/danhgiataixe" method="post">
+                    @csrf
+                    <label for="description">Bình Luận :</label>
+                    <textarea class="form-control" id="binhluan" name="binhluan" rows="5">{{ old('binhluan') }}</textarea>
+                        <br/>
+                    <label for="sosao">Đánh giá : </label>
+                    <select name="sosao" style="width: 50px;font-size: 20px;">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <i class="fa fa-star"></i>
+                    <button type="submit" name="send" value="send" class="btn btn-primary pull-right">Comment</button>
+                </form>
+            </div>
+    </div>
     </div>
     <br />
     <br />

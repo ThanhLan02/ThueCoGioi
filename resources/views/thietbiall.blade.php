@@ -33,9 +33,9 @@
             <div class="col-md-12">
                 <ul class="breadcrumb-tree">
                     <li><a href="#">Trang Chủ</a></li>
-                    <li class="active"><a href="#">Tất cả thiết bị & tài xế</a></li>
-                    <!-- <li><a href="#">Accessories</a></li>
-							<li class="active">Headphones (227,490 Results)</li> -->
+                    <li><a href="#">Tất cả thiết bị & tài xế</a></li>
+                    <li><a href="#">Thuê</a></li>
+					<li class="active">Thiết bị (227,490 Results)</li>
                 </ul>
             </div>
         </div>
@@ -266,48 +266,7 @@
                         </div>
                         @endforeach
                         <!-- /product -->
-                        <!-- product -->
-                        @foreach($taixes as $taixe)
-                        <form action="{{ route('thuethietbi.themgiohangtx') }}" method="POST">
-                            @csrf
-                            <div class="col-md-4 col-xs-6">
-                                <div class="product">
-                                    <div class="product-img">
-                                        <img src="./img/{{$taixe->Anh}}" alt="">
-                                        <div class="product-label">
-                                            <span class="sale">{{$taixe->khuyenmai->TenKM}}</span>
-                                            <span class="new">NEW</span>
-                                        </div>
-                                    </div>
-                                    <div class="product-body">
-                                        <p class="product-category">TÀI XẾ</p>
-                                        <h3 class="product-name"><a href="#">{{$taixe->TenTX}}</a></h3>
-                                        <h4 class="product-price">{{$taixe->GiaKM}} VNĐ <del class="product-old-price">{{$taixe->GiaThue}} VNĐ</del></h4>
-                                        <div class="product-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <div class="product-btns">
-                                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                                            <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-                                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-                                        </div>
-                                    </div>
-                                    <div class="add-to-cart">
-                                        <div class="form-group" style="display: none;">
-                                            <input type="text" class="form-control" name="taixe_id" value="{{$taixe->id}}">
-                                        </div>
-                                        <button class="add-to-cart-btn" type="submit"><i class="fa fa-shopping-cart"></i>
-                                            Thêm vào giỏ hàng </button>
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach
-                            <!-- /product -->
-
+                        
                 </div>
                 <!-- /store products -->
 

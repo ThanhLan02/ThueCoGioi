@@ -61,10 +61,10 @@
 					<div class="header-ctn">
 						<!-- Wishlist -->
 						<div>
-							<a href="donhangduyet.php">
+							<a href="/duyetdon">
 								<i class="fa fa-heart-o"></i>
 								<span>Duyệt đơn</span>
-								<div class="qty">2</div>
+								
 							</a>
 						</div>
 						<!-- /Wishlist -->

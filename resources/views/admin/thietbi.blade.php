@@ -14,6 +14,7 @@
             <br />
             <a href="/thietbicreate" class="btn btn-info">Thêm thiết bị mới</a>
         </div>
+
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -38,7 +39,7 @@
                     </thead>
                     <tfoot>
                         <tr>
-                        <th>Mã</th>
+                            <th>Mã</th>
                             <th>Mô Tả</th>
                             <th>Tên</th>
                             <th>File PDF</th>
@@ -72,9 +73,13 @@
                             <td>{{$thietbi->SoSao}}</td>
                             <td>{{$thietbi->SoDanhGIa}}</td>
                             <td>{{$thietbi->NguoiDung_ID}}</td>
-                            <td><a href="{{( route('admin.updatethietbi',$thietbi->id) )}}" class="btn btn-sm rounded-0 btn-success" title="update"><i class="fas fa-pencil-alt"></i></a> |
-                                            <a href="{{( route('admin.deletethietbi',$thietbi->id) )}}" class="btn btn-sm rounded-0 btn-danger" title="delete"><i class="fas fa-trash"></i></a>
-                                        </td>
+                            <td><a href="{{( route('admin.updatethietbi',$thietbi->id) )}}" class="btn btn-sm rounded-0 btn-success" title="update"><i class="fas fa-pencil-alt"></i></a>
+                                <a href="{{( route('admin.deletethietbi',$thietbi->id) )}}" class="btn btn-sm rounded-0 btn-danger" title="delete"><i class="fas fa-trash"></i></a>
+                                <form action="{{route('admin.duyettb',$thietbi->id)}}" method="post">
+                                    @csrf
+                                    <button type="submit" name="send" value="send" class="btn btn-primary align-center">Duyệt</button>
+                                </form>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

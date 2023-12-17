@@ -25,8 +25,9 @@
                             <div class="d-flex justify-content-center mb-2">
                                 <button type="submit" class="btn btn-primary" name="change">Đổi mật khẩu</button>
                                 <button type="button" class="btn btn-outline-primary ms-1">Đổi thông tin</button>
-                                <button type="button" class="btn btn-outline-primary ms-1"><a href="/thietbiuser">Quản lý cho thuê </a></button>
-                                <button type="button" class="btn btn-outline-primary ms-1"><a href="lsgiaodich.php">Lịch sử giao dịch </a></button>
+                                <button type="button" class="btn btn-outline-primary ms-1"><a href="/thietbiuser">Quản lý cho thuê thiết bị</a></button>
+                                <button type="button" class="btn btn-outline-primary ms-1"><a href="/taixeuser">Quản lý cho thuê tài xế</a></button>
+                                <button type="button" class="btn btn-outline-primary ms-1"><a href="/donhang">Lịch sử giao dịch </a></button>
                             </div>
                         </div>
                     </div>

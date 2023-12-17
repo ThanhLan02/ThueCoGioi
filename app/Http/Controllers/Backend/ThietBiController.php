@@ -32,7 +32,7 @@ class ThietBiController extends Controller
     }
     public function index(){
 
-        $thietbis = thietbi::paginate(15);
+        $thietbis = thietbi::paginate(5);
         $khuyenmais = Khuyenmai::paginate(15);
         $loais = loaixe::paginate(15);
         $hangs = hang::paginate(15);
@@ -148,5 +148,12 @@ class ThietBiController extends Controller
         } else {
             return redirect()->route('admin.thietbi')->with('Success','Xóa không thành công');
         }
+    }
+    public function duyettb($id)
+    {
+        $thietbi=thietbi::findOrFail($id);
+        $thietbi->TinhTrang = "1";
+        $thietbi->save();
+        return redirect()->back()->with('Success','duyệt thành công');
     }
 }

@@ -22,4 +22,5 @@
     <!-- Custom stlylesheet -->
     <link type="text/css" rel="stylesheet" href="{{asset('css/style.css')}}" />
     <link type="text/css" rel="stylesheet" href="{{asset('css/detail.css')}}" />
+    <link type="text/css" rel="stylesheet" href="{{asset('css/comment.css')}}" />
 </head>

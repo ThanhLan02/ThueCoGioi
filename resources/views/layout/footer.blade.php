@@ -100,3 +100,5 @@
     <script src="{{ URL::asset('js/jquery.zoom.min.js') }}"></script>
     <script src="{{ URL::asset('js/main.js') }}"></script>
     <script src="{{ URL::asset('js/jquery-3.6.0.min.js') }}"></script>
+	<script src="{{ URL::asset('js/cart.js') }}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

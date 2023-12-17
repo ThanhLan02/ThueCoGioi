@@ -14,6 +14,7 @@ use App\Http\Controllers\Backend\Dangkycontroller;
 use App\Http\Controllers\Backend\HosoController;
 use App\Http\Controllers\Backend\ThietbiUserController;
 use App\Http\Controllers\Backend\ThueController;
+use App\Http\Controllers\Backend\TaixeUserController;
 use App\Http\Middleware\AuthenticateMiddleware;
 use Illuminate\Support\Facades\Response;
 /*
@@ -34,10 +35,16 @@ Route::get('/', [TrangchuController::class, 'index'])->name('Trangchu.index');
 
 Route::get('index', [TrangchuController::class, 'index'])->name('Trangchu.index');
 Route::get('thietbitaixe', [TrangchuController::class, 'thietbitaixe'])->name('Trangchu.thietbitaixe');
+Route::get('thietbiall', [TrangchuController::class, 'thietbiall'])->name('Trangchu.thietbiall');
+Route::get('taixeall', [TrangchuController::class, 'taixeall'])->name('Trangchu.taixeall');
 Route::get('{id}/chitietthietbi', [TrangchuController::class, 'chitietthietbi'])->where(['id' => '[0-9]+'])->name
 ('Trangchu.chitietthietbi');
+Route::post('{id}/danhgiathietbi', [TrangchuController::class, 'danhgiathietbi'])->where(['id' => '[0-9]+'])
+->name('Trangchu.danhgiathietbi')->middleware(AuthenticateMiddleware::class);
 Route::get('{id}/chitiettaixe', [TrangchuController::class, 'chitiettaixe'])->where(['id' => '[0-9]+'])->name
 ('Trangchu.chitiettaixe');
+Route::post('{id}/danhgiataixe', [TrangchuController::class, 'danhgiataixe'])->where(['id' => '[0-9]+'])
+->name('Trangchu.danhgiataixe')->middleware(AuthenticateMiddleware::class);
 Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.index')->middleware(AuthenticateMiddleware::class);
 Route::get('login', [AuthController::class, 'login'])->name('auth.login');
 Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
@@ -54,12 +61,47 @@ Route::get('{id}/updatethietbiuser', [ThietbiUserController::class, 'updatethiet
 ('thietbiuser.updatethietbiuser')->middleware(AuthenticateMiddleware::class);
 Route::post('{id}/updatetbu', [ThietbiUserController::class, 'updatetbu'])->where(['id' => '[0-9]+'])->name
 ('thietbiuser.updatetbu')->middleware(AuthenticateMiddleware::class);
-
 Route::get('{id}/deletethietbiuser', [ThietbiUserController::class, 'deletethietbiuser'])->where(['id' => '[0-9]+'])->name
 ('thietbiuser.deletethietbiuser')->middleware(AuthenticateMiddleware::class);
+Route::get('{id}/themanhtbuser', [ThietbiUserController::class, 'themanhtbuser'])
+->where(['id' => '[0-9]+'])->name('thietbiuser.themanhtbuser')->middleware(AuthenticateMiddleware::class);
+Route::post('{id}/themanhtbuserstore', [ThietbiUserController::class, 'themanhtbuserstore'])->where(['id' => '[0-9]+'])
+->name('thietbiuser.themanhtbuserstore')->middleware(AuthenticateMiddleware::class);
+
+Route::get('{id}/themanhtxuser', [ThietbiUserController::class, 'themanhtxuser'])
+->where(['id' => '[0-9]+'])->name('taixeuser.themanhtxuser')->middleware(AuthenticateMiddleware::class);
+Route::post('{id}/themanhtxuserstore', [ThietbiUserController::class, 'themanhtxuserstore'])->where(['id' => '[0-9]+'])
+->name('taixeuser.themanhtxuserstore')->middleware(AuthenticateMiddleware::class);
 
 
+Route::get('taixeuser', [TaixeUserController::class, 'index'])->name('taixeuser.taixeuser')->middleware(AuthenticateMiddleware::class);
+Route::get('taixeusercreate', [TaixeUserController::class, 'taixeusercreate'])->name('taixeuser.taixeusercreate')->middleware(AuthenticateMiddleware::class);
+Route::post('taixeuserstore', [TaixeUserController::class, 'taixeuserstore'])->name('taixeuser.taixeuserstore')->middleware(AuthenticateMiddleware::class);
+Route::get('{id}/updatetaixeuser', [TaixeUserController::class, 'updatetaixeuser'])->where(['id' => '[0-9]+'])->name
+('taixeuser.updatetaixeuser')->middleware(AuthenticateMiddleware::class);
+Route::post('{id}/updatetbu', [TaixeUserController::class, 'updatetbu'])->where(['id' => '[0-9]+'])->name
+('taixeuser.updatetbu')->middleware(AuthenticateMiddleware::class);
+Route::get('{id}/deletetaixeuser', [TaixeUserController::class, 'deletetaixeuser'])->where(['id' => '[0-9]+'])->name
+('taixeuser.deletetaixeuser')->middleware(AuthenticateMiddleware::class);
+Route::get('{id}/themanhtxuser', [ThietbiUserController::class, 'themanhtxuser'])
+->where(['id' => '[0-9]+'])->name('taixeuser.themanhtxuser')->middleware(AuthenticateMiddleware::class);
+Route::post('{id}/themanhtxuserstore', [ThietbiUserController::class, 'themanhtxuserstore'])->where(['id' => '[0-9]+'])
+->name('taixeuser.themanhtxuserstore')->middleware(AuthenticateMiddleware::class);
+//ĐƠN HÀNG
+Route::get('donhang', [ThueController::class, 'donhang'])->name('thuethietbi.donhang')->middleware(AuthenticateMiddleware::class);
+Route::get('duyetdon', [ThueController::class, 'duyetdon'])->name('thuethietbi.duyetdon')->middleware(AuthenticateMiddleware::class);
 
+Route::post('{id}/duyetdontb', [ThueController::class, 'duyetdontb'])->where(['id' => '[0-9]+'])->name
+('thuethietbi.duyetdontb')->middleware(AuthenticateMiddleware::class);
+Route::post('{id}/duyetdontx', [ThueController::class, 'duyetdontx'])->where(['id' => '[0-9]+'])->name
+('thuethietbi.duyetdontx')->middleware(AuthenticateMiddleware::class);
+Route::get('{id}/xoadontb', [ThueController::class, 'xoadontb'])->where(['id' => '[0-9]+'])->name
+('thuethietbi.xoadontb')->middleware(AuthenticateMiddleware::class);
+Route::get('{id}/xoadontx', [ThueController::class, 'xoadontx'])->where(['id' => '[0-9]+'])->name
+('thuethietbi.xoadontx')->middleware(AuthenticateMiddleware::class);
+
+Route::get('{id}/huydon', [ThueController::class, 'huydon'])->where(['id' => '[0-9]+'])->name
+('thuethietbi.huydon')->middleware(AuthenticateMiddleware::class);
 //THUÊ
 Route::get('giohang', [ThueController::class, 'giohang'])->name
 ('giohang')->middleware(AuthenticateMiddleware::class);
@@ -68,7 +110,16 @@ Route::post('/thuethietbi', [ThueController::class, 'themgiothietbi'])->name
 Route::post('/thuetaixe', [ThueController::class, 'themgiotaixe'])->name
 ('thuethietbi.themgiohangtx')->middleware(AuthenticateMiddleware::class);
     
- 
+Route::post('{id}/deleteghtb', [ThueController::class, 'deleteghtb'])->where(['id' => '[0-9]+'])->name
+('thuethietbi.deleteghtb')->middleware(AuthenticateMiddleware::class);
+Route::post('{id}/deleteghtx', [ThueController::class, 'deleteghtx'])->where(['id' => '[0-9]+'])->name
+('thuethietbi.deleteghtx')->middleware(AuthenticateMiddleware::class);
+Route::get('thanhtoan', [ThueController::class, 'thanhtoan'])->where(['id' => '[0-9]+'])->name
+('thuethietbi.thanhtoan')->middleware(AuthenticateMiddleware::class);
+Route::post('thanhtoanstore', [ThueController::class, 'thanhtoanstore'])->where(['id' => '[0-9]+'])->name
+('thuethietbi.thanhtoanstore')->middleware(AuthenticateMiddleware::class);
+
+
 
 
 /*USER */
@@ -147,6 +198,7 @@ Route::get('{id}/updatethietbi', [ThietBiController::class, 'updatethietbi'])->w
 ('admin.updatethietbi')->middleware(AuthenticateMiddleware::class);
 Route::post('{id}/updatetb', [ThietBiController::class, 'updatetb'])->where(['id' => '[0-9]+'])->name
 ('admin.updatetb')->middleware(AuthenticateMiddleware::class);
-
+Route::post('{id}/duyettb', [ThietBiController::class, 'duyettb'])->where(['id' => '[0-9]+'])->name
+('admin.duyettb')->middleware(AuthenticateMiddleware::class);
 Route::get('{id}/deletethietbi', [ThietBiController::class, 'deletethietbi'])->where(['id' => '[0-9]+'])->name
 ('admin.deletethietbi')->middleware(AuthenticateMiddleware::class);

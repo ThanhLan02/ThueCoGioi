@@ -52,7 +52,7 @@
 						</div>
 						<div class="shop-body">
 							<h3>Thiết Bị<br>Cơ Giới</h3>
-							<a href="#" class="cta-btn">Thuê ngay <i class="fa fa-arrow-circle-right"></i></a>
+							<a href="{{( route('Trangchu.thietbiall') )}}" class="cta-btn">Thuê ngay <i class="fa fa-arrow-circle-right"></i></a>
 						</div>
 					</div>
 				</div>
@@ -66,7 +66,7 @@
 						</div>
 						<div class="shop-body">
 							<h3>Tài Xế<br>Cơ Giới</h3>
-							<a href="#" class="cta-btn">Thuê ngay <i class="fa fa-arrow-circle-right"></i></a>
+							<a href="{{( route('Trangchu.taixeall') )}}" class="cta-btn">Thuê ngay <i class="fa fa-arrow-circle-right"></i></a>
 						</div>
 					</div>
 				</div>

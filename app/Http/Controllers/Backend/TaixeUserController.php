@@ -17,44 +17,31 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Http\Requests\TaixeRequest;
 use App\Http\Requests\HangRequest;
 use App\Http\Requests\ThietBiRequest;
-use App\Models\anh_tb;
 use App\Models\Khuyenmai;
 use App\Models\thietbi;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-class ThietbiUserController extends Controller
+
+class TaixeUserController extends Controller
 {
     protected $model;
-    public function __construct(thietbi $model)
+    public function __construct(taixe $model)
     {
         $this->model=$model;
     }
     public function index(){
 
-        $thietbis = thietbi::where('NguoiDung_ID', Session::get('user'))->paginate(10);
+        $taixes = taixe::where('NguoiDung_ID', Session::get('user'))->paginate(10);
         $userid = Auth::user()->id;
-        return view('thietbiuser',compact('thietbis','userid'));
+        return view('taixeuser',compact('taixes','userid'));
     }
-    public function themanhtbuser($id){
-        $thietbi=thietbi::findOrFail($id);
-        return view('themanhtbuser',compact('thietbi'));
-    }
-    public function themanhtbuserstore($id,Request $request){
-        $anh_tb = new anh_tb();
-        $anh_tb->ThietBi_ID = $id;
-        $anh_tb->anh = $request->input('anh');
-        $anh_tb->save();
-        return redirect()->back()->with('Success','Thêm thành công');
-    }
-    public function thietbiusercreate(){
+    public function taixeusercreate(){
         $userid = Auth::user()->id;
-        $nguoidungs = User::paginate(15);
-        $khuyenmais = Khuyenmai::paginate(15);
-        $loais = loaixe::paginate(15);
-        $hangs = hang::paginate(15);
-        return view('thietbiusercreate',compact('userid','khuyenmais','nguoidungs','loais','hangs'));
+        $nguoidungs = User::all();
+        $khuyenmais = Khuyenmai::all();
+        return view('taixeusercreate',compact('userid','khuyenmais','nguoidungs'));
     }
     public function createu(Request $request)
     {
@@ -72,26 +59,24 @@ class ThietbiUserController extends Controller
             return false;
         }
     }
-    public function thietbiuserstore(ThietBiRequest $request){
+    public function taixeuserstore(TaixeRequest $request){
         if($this->createu($request))
         {
-            return redirect()->route('thietbiuser.thietbiuser')->with('Success','Thêm thành công');
+            return redirect()->route('taixeuser.taixeuser')->with('Success','Thêm thành công');
         }
         else
         {
-            return redirect()->back()->with('error','Thêm không thành công');
+            return redirect()->route('taixeuser.taixeuser')->with('error','Thêm không thành công');
         }
     }
-    public function updatethietbiuser($id)
+    public function updatetaixeuser($id)
     {
-        $thietbi=thietbi::findOrFail($id);
+        $taixe=taixe::findOrFail($id);
         $userid = Auth::user()->id;
         $nguoidungs = User::paginate(15);
-        $khuyenmais = Khuyenmai::paginate(15);
-        $loais = loaixe::paginate(15);
-        $hangs = hang::paginate(15);
+        $khuyenmais = Khuyenmai::all();
         //$hang = hang::find($MaHang);
-        return view('updatethietbiuser',compact('userid','khuyenmais','nguoidungs','loais','hangs'))->with('thietbi',$thietbi);
+        return view('updatetaixeuser',compact('userid','khuyenmais','nguoidungs'))->with('taixe',$taixe);
     }
     public function updateu($id, Request $request)
     {
@@ -121,40 +106,29 @@ class ThietbiUserController extends Controller
         // {
         //     return redirect()->route('admin.users')->with('error','Cập nhật không thành công');
         // }
-        $thietbi=thietbi::findOrFail($id);
+        $taixe=taixe::findOrFail($id);
         // dd($request->all());
         $data=$request->all();
         // dd($data);
         
-        $status=$thietbi->fill($data)->save();
+        $status=$taixe->fill($data)->save();
         if($status){
             request()->session()->flash('success','Cập nhật thành công');
         }
         else{
             request()->session()->flash('error','Cập nhật không thành công');
         }
-        return redirect()->route('thietbiuser.thietbiuser');
+        return redirect()->route('taixeuser.taixeuser');
     }
     public function deletethietbiuser($id)
     {
-        // $delete=User::findorFail($id);
-        // $status=$delete->delete();
-        // if($status){
-        //     request()->session()->flash('success','Xóa thành công');
-        // }
-        // else{
-        //     request()->session()->flash('error','Xóa không thành công');
-        // }
-        // return redirect()->route('admin.users');
+        $taixe = taixe::find($id);
 
-
-        $thietbi = thietbi::find($id);
-
-        if ($thietbi) {
-            $thietbi->delete();
-            return redirect()->route('admin.thietbi')->with('Success','Xóa thành công');
+        if ($taixe) {
+            $taixe->delete();
+            return redirect()->route('taixeuser.taixeuser')->with('Success','Xóa thành công');
         } else {
-            return redirect()->route('admin.thietbi')->with('Success','Xóa không thành công');
+            return redirect()->route('taixeuser.taixeuser')->with('Success','Xóa không thành công');
         }
     }
 }

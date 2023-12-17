@@ -5,28 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class chitiethd_taixe extends Model
+class danhgia_taixe extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'HoaDon_ID',
+        'SoSao',
+        'BinhLuan',
+        'NgayLap',
+        'NguoiDung_ID',
         'TaiXe_ID',
-        'NCT_ID',
-        'dongia',
-        'TinhTrang',
-
     ];
-    protected $table = 'chitiethd_taixe';
-    public function hoadon ()
-    {
-        return $this->belongsTo(hoadon::class, 'HoaDon_ID', 'id');
-    }
+    protected $table = 'danhgia_taixe';
     public function taixe ()
     {
         return $this->belongsTo(taixe::class, 'TaiXe_ID', 'id');
     }
     public function user ()
     {
-        return $this->belongsTo(User::class, 'NCT_ID', 'id');
+        return $this->belongsTo(User::class, 'NguoiDung_ID', 'id');
     }
 }
