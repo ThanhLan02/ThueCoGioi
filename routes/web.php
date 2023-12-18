@@ -56,6 +56,13 @@ Route::post('DangkySubmit', [Dangkycontroller::class, 'DangkySubmit'])->name('Da
 Route::get('hoso/{id}', [HosoController::class, 'hoso'])->where(['id' => '[0-9]+'])->name
 ('Hoso.hoso');
 
+Route::get('{id}/updatehoso', [HosoController::class, 'updatehoso'])->where(['id' => '[0-9]+'])->name
+('Hoso.updatehoso')->middleware(AuthenticateMiddleware::class);
+Route::post('{id}/updatehosoec', [HosoController::class, 'updatehosoec'])->where(['id' => '[0-9]+'])->name
+('Hoso.updatehosoec')->middleware(AuthenticateMiddleware::class);
+
+
+
 Route::get('thietbiuser', [ThietbiUserController::class, 'index'])->name('thietbiuser.thietbiuser')->middleware(AuthenticateMiddleware::class);
 Route::get('thietbiusercreate', [ThietbiUserController::class, 'thietbiusercreate'])->name('thietbiuser.thietbiusercreate')->middleware(AuthenticateMiddleware::class);
 Route::post('thietbiuserstore', [ThietbiUserController::class, 'thietbiuserstore'])->name('thietbiuser.thietbiuserstore')->middleware(AuthenticateMiddleware::class);

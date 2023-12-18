@@ -29,8 +29,10 @@ class ThueController extends Controller
     public function giohang(){
 
         $ghthietbis = giohang_thietbi::where('NguoiDung_ID',Session::get('user'))->get();
+        $tongtientb = giohang_thietbi::where('NguoiDung_ID',Session::get('user'))->sum('TongTien');
         $ghtaixes = giohang_taixe::where('NguoiDung_ID',Session::get('user'))->get();
-        return view('giohang',compact('ghthietbis','ghtaixes'));
+        $tongtientx = giohang_taixe::where('NguoiDung_ID',Session::get('user'))->sum('TongTien');
+        return view('giohang',compact('ghthietbis','ghtaixes','tongtientb','tongtientx'));
     }
     public function thanhtoan(){
         $total = DB::table('giohang_thietbi')->sum('TongTien');
@@ -97,7 +99,7 @@ class ThueController extends Controller
         $giohang_thietbi->TongTien = $thietbi->GiaKM;
         $giohang_thietbi->NguoiDung_ID = Session::get('user');
         $giohang_thietbi->save();
-        $sl = giohang_thietbi::count() + giohang_taixe::count();
+        $sl = giohang_thietbi::where('NguoiDung_ID',Session::get('user'))->count() + giohang_taixe::where('NguoiDung_ID',Session::get('user'))->count();
         return redirect()->back()->with('success','Thêm thành công');
     }
     public function themgiotaixe(Request $request){
@@ -112,7 +114,7 @@ class ThueController extends Controller
         $giohang_taixe->TongTien = $taixe->GiaKM;
         $giohang_taixe->NguoiDung_ID = Session::get('user');
         $giohang_taixe->save();
-        $sl = giohang_thietbi::count() + giohang_taixe::count();
+        $sl = giohang_thietbi::where('NguoiDung_ID',Session::get('user'))->count() + giohang_taixe::where('NguoiDung_ID',Session::get('user'))->count();
         Session::put('soluong',$sl);
         return redirect()->back()->with('success','Thêm thành công');
     }
@@ -210,7 +212,7 @@ class ThueController extends Controller
             $mailuser = $nn->email;
             Mail::send('guihoadon',compact('hd','cthdtb','cthdtx'), function($email) use($mailuser){
                 $email->subject('Xác nhận thuê');
-                $email->to($mailuser,'test');
+                $email->to($mailuser,'XÁC NHẬN THUÊ');
             });
         }
         return redirect()->back()->with('Success','duyệt thành công');
@@ -269,12 +271,24 @@ class ThueController extends Controller
             $ct=chitiethd_thietbi::findOrFail($item->id);
             $ct->Tinhtrang = "-1";
             $ct->save();
+            $user=User::findOrFail($ct->NCT_ID);
+            $mailuser = $user->email;
+            Mail::send('huydonhangtb',compact('ct'), function($email) use($mailuser){
+                $email->subject('Hủy đơn hàng');
+                $email->to($mailuser,'HỦY ĐƠN HÀNG');
+            });
         }
         foreach($cttxs as $item)
         {
             $ct=chitiethd_taixe::findOrFail($item->id);
             $ct->Tinhtrang = "-1";
             $ct->save();
+            $user=User::findOrFail($ct->NCT_ID);
+            $mailuser = $user->email;
+            Mail::send('huydonhangtx',compact('ct'), function($email) use($mailuser){
+                $email->subject('Hủy đơn hàng');
+                $email->to($mailuser,'HỦY ĐƠN HÀNG');
+            });
         }
         return redirect()->back()->with('Success','Hủy thành công');
     }

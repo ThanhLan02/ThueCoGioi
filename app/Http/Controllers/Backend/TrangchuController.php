@@ -27,7 +27,7 @@ class TrangchuController extends Controller
         $taixes1 = taixe::where('TrangThai', '=', 1)->paginate(10);
         $thietbis2 = thietbi::where('TinhTrang', '=', 1)->paginate(3);
         $taixes2 = taixe::where('TrangThai', '=', 1)->paginate(3);
-        $sl = giohang_thietbi::count() + giohang_taixe::count();
+        $sl = giohang_thietbi::where('NguoiDung_ID',Session::get('user'))->count() + giohang_taixe::where('NguoiDung_ID',Session::get('user'))->count();
         Session::put('soluong',$sl);
         return view('index',compact('thietbis1','taixes1','thietbis2','taixes2'));
     }

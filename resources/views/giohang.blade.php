@@ -45,7 +45,8 @@
                         <th>&nbsp;</th>
                         <th>&nbsp;</th>
                         <th></th>
-                        <th>500.000 VNĐ</th>
+                        <th></th>
+                        <th>{{number_format($tongtientb,0)}} VNĐ</th>
                         <th>&nbsp;</th>
                     </tr>
                 </table>
@@ -85,7 +86,7 @@
                             <th>&nbsp;</th>
                             <th>&nbsp;</th>
 
-                            <th>500.000 VNĐ</th>
+                            <th>{{number_format($tongtientx,0)}} VNĐ</th>
                             <th>&nbsp;</th>
                         </tr>
                     </table>

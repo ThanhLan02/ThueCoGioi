@@ -33,6 +33,8 @@
                         <td><a href="/hoso/{{$item->NguoiNhan}}">{{$item->NguoiNhan}}</a></td>
                         @if($item->TinhTrang == 0)
                         <td>Đang chờ duyệt</td>
+                        @elseif($item->TinhTrang == -1)
+                        <td>Đã hủy</td>
                         @else
                         <td>Đã duyệt</td>
                         @endif

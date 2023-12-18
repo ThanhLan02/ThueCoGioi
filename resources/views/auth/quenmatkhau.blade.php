@@ -3,12 +3,12 @@
 @section('main-content')
 <div class="container">
     <br />
-    <h1 class="text-center">Đăng Nhập</h1>
+    <h1 class="text-center">Quên Mật Khẩu</h1>
     <div class="row vertical-offset">
         <div class="col-md-4 col-md-offset-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Thông tin đăng nhập</h3>
+                    <h3 class="panel-title">Nhập Email</h3>
                 </div>
                 <div class="panel-body">
                     <form accept-charset="UTF-8" role="form" method="post" action="{{( route('auth.quenmatkhaustore') )}}">
