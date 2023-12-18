@@ -113,7 +113,12 @@ Route::post('/thuethietbi', [ThueController::class, 'themgiothietbi'])->name
 ('thuethietbi.themgiohang')->middleware(AuthenticateMiddleware::class);
 Route::post('/thuetaixe', [ThueController::class, 'themgiotaixe'])->name
 ('thuethietbi.themgiohangtx')->middleware(AuthenticateMiddleware::class);
+Route::post('{id}/updatesoluong', [ThueController::class, 'updatesoluong'])->where(['id' => '[0-9]+'])->name
+('thuethietbi.updatesoluong')->middleware(AuthenticateMiddleware::class);
+Route::post('deletegh', [ThueController::class, 'deletegh'])->where(['id' => '[0-9]+'])->name
+('thuethietbi.deletegh')->middleware(AuthenticateMiddleware::class);
     
+
 Route::post('{id}/deleteghtb', [ThueController::class, 'deleteghtb'])->where(['id' => '[0-9]+'])->name
 ('thuethietbi.deleteghtb')->middleware(AuthenticateMiddleware::class);
 Route::post('{id}/deleteghtx', [ThueController::class, 'deleteghtx'])->where(['id' => '[0-9]+'])->name

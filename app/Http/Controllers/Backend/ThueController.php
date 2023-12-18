@@ -34,6 +34,40 @@ class ThueController extends Controller
         $tongtientx = giohang_taixe::where('NguoiDung_ID',Session::get('user'))->sum('TongTien');
         return view('giohang',compact('ghthietbis','ghtaixes','tongtientb','tongtientx'));
     }
+    public function updatesoluong($id,Request $request)
+    {
+        $giohang_thietbi = giohang_thietbi::findOrFail($id);
+        if($request->input('soluong') < 1)
+        {
+            $giohang_thietbi->delete();
+            return redirect()->route('giohang')->with('success','cập nhật thành công');
+        }
+        else
+        {
+            $giohang_thietbi->soluong = $request->input('soluong');
+            $giohang_thietbi->TongTien = $giohang_thietbi->ThietBi_Gia * $request->input('soluong');
+            $giohang_thietbi->save();
+            return redirect()->route('giohang')->with('success','cập nhật thành công');
+        }
+        
+    }
+    
+    public function deletegh()
+    {
+        $giohang_thietbis = giohang_thietbi::where('NguoiDung_ID', Session::get('user'))->get();
+        $giohang_taixes = giohang_taixe::where('NguoiDung_ID', Session::get('user'))->get();
+        foreach($giohang_thietbis as $item)
+        {
+            $giohang_thietbi = giohang_thietbi::findOrFail($item->id);
+            $giohang_thietbi->delete();
+        }
+        foreach($giohang_taixes as $item)
+        {
+            $giohang_taixe = giohang_taixe::findOrFail($item->id);
+            $giohang_taixe->delete();
+        }
+        return redirect()->route('giohang')->with('success','Xóa giỏ hàng thành công');
+    }
     public function thanhtoan(){
         $total = DB::table('giohang_thietbi')->sum('TongTien');
         $total2 = DB::table('giohang_taixe')->sum('TongTien');
@@ -292,4 +326,5 @@ class ThueController extends Controller
         }
         return redirect()->back()->with('Success','Hủy thành công');
     }
+    
 }

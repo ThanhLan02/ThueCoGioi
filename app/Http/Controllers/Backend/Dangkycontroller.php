@@ -45,7 +45,7 @@ class Dangkycontroller extends Controller
         
         if($check){
             request()->session()->flash('success','Đăng ký thành công');
-            return redirect()->route('auth.login')->with('Thành công','Đăng ký thành công');
+            return redirect()->route('auth.login')->with('success','Đăng ký thành công');
         }
         else{
             request()->session()->flash('error','Đăng ký thất bại!');
@@ -64,7 +64,7 @@ class Dangkycontroller extends Controller
             'password'=>Hash::make($data['password']),
             'diachi'=>$data['diachi'],
             'quyen_id'=>'2',
-            'trangthai'=>'0',
+            'trangthai'=>'1',
             'status'=>'active'
             ]);
     }

@@ -40,7 +40,7 @@
                 <a class="collapse-item" href="{{( route('admin.taixe') )}}">Tài xế</a>
                 <a class="collapse-item" href="{{( route('admin.loai') )}}">Loại thiết bị</a>
                 <a class="collapse-item" href="{{( route('admin.hang') )}}">Hãng thiết bị</a>
-                <a class="collapse-item" href="">Đánh giá</a>
+
                 <a class="collapse-item" href="{{( route('admin.khuyenmai') )}}">Khuyến Mãi</a>
             </div>
         </div>
@@ -56,8 +56,8 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Quản lý đơn hàng:</h6>
                 <a class="collapse-item" href="/hoadon">Đơn hàng</a>
-                <a class="collapse-item" href="utilities-border.html">Doanh thu</a>
-                <a class="collapse-item" href="utilities-other.html">Other</a>
+                <a class="collapse-item" href="">Doanh thu</a>
+                <a class="collapse-item" href="">Other</a>
             </div>
         </div>
     </li>
@@ -86,7 +86,7 @@
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Biểu đồ</span></a>
     </li>

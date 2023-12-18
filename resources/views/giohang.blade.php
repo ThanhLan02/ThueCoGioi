@@ -15,7 +15,7 @@
 
                 <table class="table">
                     <tr>
-                    <th>Nguoi thue</th>
+                        <th>Nguoi thue</th>
                         <th>Tên Thiết bị</th>
                         <th>Ảnh</th>
                         <th>Số Lượng</th>
@@ -24,10 +24,17 @@
                         <th>Action</th>
                     </tr>
                     @foreach($ghthietbis as $thietbi)
-                    <tr><td><a href="/hoso/{{$thietbi->NguoiDung_ID}}">{{$thietbi->user->hoten}}</a></td>
+                    <tr>
+                        <td><a href="/hoso/{{$thietbi->NguoiDung_ID}}">{{$thietbi->user->hoten}}</a></td>
                         <td><a href="/{{$thietbi->ThietBi_ID}}/chitietthietbi">{{$thietbi->ThietBi_Ten}} </a></td>
                         <td><img src="./img/{{$thietbi->ThietBi_Anh}}" alt="" style="width: 300px;height: 300px;"></td>
-                        <td>{{$thietbi->SoLuong}}</td>
+                        <td>
+                            <form action="{{route('thuethietbi.updatesoluong',$thietbi->id)}}" method="post">
+                                @csrf
+                                <input type="text" name="soluong" style="width: 50px;" value="{{$thietbi->SoLuong}}">
+                                <button type="submit" name="send" value="send" class="btn btn-primary align-center"><i class="fa fa-pencil"></i></button>
+                            </form>
+                        </td>
                         <td>{{$thietbi->TongTien}} VNĐ</td>
 
                         <td><a href="/hoso/{{$thietbi->thietbi->user->id}}">{{$thietbi->thietbi->user->hoten}}</a></td>
@@ -94,11 +101,14 @@
                 </div>
             </div>
             <div class="card-footer text-center ">
-                <a href="" class="btn btn-success rounded-0">Xóa toàn bộ</a>
-
-                <a href="/thanhtoan" class="btn btn-danger rounded-0">XÁC NHẬN THUÊ</a>
+                <form action="{{route('thuethietbi.deletegh')}}" method="post">
+                    @csrf
+                    <button type="submit" name="send" value="send" class="btn btn-success rounded-0">Xóa toàn bộ</button>
+                    <a href="/thanhtoan" class="btn btn-danger rounded-0">XÁC NHẬN THUÊ</a>
                 <a href="/index" class="btn btn-warning rounded-0">Tiếp tục thuê</a>
-                <a href="donhangthue.php" class="btn btn-info rounded-0">Các đơn đã thuê</a>
+                <a href="/donhang" class="btn btn-info rounded-0">Các đơn đã thuê</a>
+                </form>
+                
             </div>
         </div>
 
