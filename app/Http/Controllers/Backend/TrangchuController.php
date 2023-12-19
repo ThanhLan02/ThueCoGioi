@@ -9,6 +9,7 @@ use App\Models\giohang_taixe;
 use App\Models\giohang_thietbi;
 use App\Http\Controllers\Controller;
 use App\Models\anh_tb;
+use App\Models\anh_tx;
 use App\Models\hang;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
@@ -74,14 +75,19 @@ class TrangchuController extends Controller
         $thietbi = thietbi::findOrFail($id);
         $danhgias = danhgia::where('ThietBi_ID',$id)->get();
         $anh_tb = anh_tb::where('ThietBi_ID',$id)->get();
-        return view('chitietthietbi',compact('thietbis','anh_tb','danhgias'))->with('thietbi',$thietbi);
+        $SoSao = danhgia::where('ThietBi_ID',$id)->sum('SoSao');
+        $SoDanhGia = danhgia::where('ThietBi_ID',$id)->count();
+        return view('chitietthietbi',compact('thietbis','anh_tb','danhgias','SoSao','SoDanhGia'))->with('thietbi',$thietbi);
     }
     public function chitiettaixe($id)
     {
         $taixes = taixe::paginate(5);
         $taixe = taixe::findOrFail($id);
         $danhgias = danhgia_taixe::where('TaiXe_ID',$id)->get();
-        return view('chitiettaixe',compact('taixes','danhgias'))->with('taixe',$taixe);
+        $anh_tx = anh_tx::where('TaiXe_ID',$id)->get();
+        $SoSao = danhgia_taixe::where('TaiXe_ID',$id)->sum('SoSao');
+        $SoDanhGia = danhgia_taixe::where('TaiXe_ID',$id)->count();
+        return view('chitiettaixe',compact('taixes','danhgias','anh_tx','SoSao','SoDanhGia'))->with('taixe',$taixe);
     }
     public function danhgiathietbi($id,Request $request)
     {

@@ -62,7 +62,7 @@
                             <input type="checkbox" id="category-1">
                             <label for="category-1">
                                 <span></span>
-                                Thiết bị cơ giới
+                                <a href="/thietbiall">Thiết bị cơ giới</a>
                                 <small>({{$s1}})</small>
                             </label>
                         </div>
@@ -71,7 +71,7 @@
                             <input type="checkbox" id="category-2">
                             <label for="category-2">
                                 <span></span>
-                                Tài xế
+                                <a href="/taixeall">Tài xế</a>
                                 <small>({{$s2}})</small>
                             </label>
                         </div>

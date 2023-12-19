@@ -146,7 +146,7 @@
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category">TÀI XẾ</p>
-                                    <h3 class="product-name"><a href="/chitiettaixe/{{$taixe->id}}">{{$taixe->TenTX}}</a></h3>
+                                    <h3 class="product-name"><a href="/{{$taixe->id}}/chitiettaixe">{{$taixe->TenTX}}</a></h3>
                                     <h4 class="product-price">{{$taixe->GiaKM}} VNĐ <del class="product-old-price">{{$taixe->GiaThue}} VNĐ</del></h4>
                                     <div class="product-rating">
                                         <i class="fa fa-star"></i>

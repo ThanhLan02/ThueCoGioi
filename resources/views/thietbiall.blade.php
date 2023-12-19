@@ -164,7 +164,7 @@
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category">{{$thietbi->loai->TenLoai}}</p>
-                                    <h3 class="product-name"><a href="#">{{$thietbi->TenTB}}</a></h3>
+                                    <h3 class="product-name"><a href="/{{$thietbi->id}}/chitietthietbi">{{$thietbi->TenTB}}</a></h3>
                                     <h4 class="product-price">{{$thietbi->GiaKM}} VNĐ <del class="product-old-price">{{$thietbi->GiaThue}} VNĐ</del></h4>
                                     <div class="product-rating">
                                         <i class="fa fa-star"></i>

@@ -40,7 +40,7 @@ $file = './img/SCC550A单行本-英文-20180507.pdf';
                     </div>
                     <p class="product-description">{{$thietbi->MoTa}}</p>
                     <h4 class="price">Giá thuê: <span>{{$thietbi->GiaThue}} VNĐ/Ngày</span></h4>
-                    <p class="vote"><strong>91%</strong> Đánh giá cao thiết bị này <strong>(87 votes)</strong></p>
+                    <p class="vote"><strong>{{$SoSao}} <i class="fa fa-star"></i></strong> Đánh giá cao thiết bị này <strong>({{$SoDanhGia}} đánh giá)</strong></p>
                     <!-- <h5 class="sizes">sizes:
 							<span class="size" data-toggle="tooltip" title="small">s</span>
 							<span class="size" data-toggle="tooltip" title="medium">m</span>
@@ -101,74 +101,81 @@ $file = './img/SCC550A单行本-英文-20180507.pdf';
                 <div id="tab1" class="tab-pane active">
                     <div class="products-slick" data-nav="#slick-nav-1">
                         @foreach($thietbis as $tb)
-                        <!-- product -->
-                        <div class="product">
-                            <div class="product-img">
-                                <img src="{{asset('./img')}}/{{$tb->Anh}}" alt="">
-                                <div class="product-label">
-                                    <span class="sale">-30%</span>
-                                    <span class="new">NEW</span>
+                        <form action="{{ route('thuethietbi.themgiohang') }}" method="POST">
+                            @csrf
+                            <!-- product -->
+                            <div class="product">
+                                <div class="product-img">
+                                    <img src="{{asset('./img')}}/{{$tb->Anh}}" alt="">
+                                    <div class="product-label">
+                                        <span class="sale">-30%</span>
+                                        <span class="new">NEW</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="product-body">
-                                <p class="product-category">{{$tb->loai->TenLoai}}</p>
-                                <h3 class="product-name"><a href="#">{{$tb->TenTB}}</a></h3>
-                                <h4 class="product-price">{{$tb->GiaKM}} VNĐ <del class="product-old-price">{{$tb->GiaThue}} VNĐ</del></h4>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
+                                <div class="product-body">
+                                    <p class="product-category">{{$tb->loai->TenLoai}}</p>
+                                    <h3 class="product-name"><a href="#">{{$tb->TenTB}}</a></h3>
+                                    <h4 class="product-price">{{$tb->GiaKM}} VNĐ <del class="product-old-price">{{$tb->GiaThue}} VNĐ</del></h4>
+                                    <div class="product-rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="product-btns">
+                                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+                                        <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+                                        <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                                    </div>
                                 </div>
-                                <div class="product-btns">
-                                    <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                                    <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-                                    <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-                                </div>
-                            </div>
-                            <div class="add-to-cart">
-                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</button>
-                            </div>
-                        </div>
-
-                        @endforeach
+                                <div class="add-to-cart">
+                                    <div class="form-group" style="display: none;">
+                                        <input type="text" class="form-control" name="thietbi_id" value="{{$thietbi->id}}">
+                                    </div>
+                                    <button class="add-to-cart-btn" type="submit"><i class="fa fa-shopping-cart"></i>
+                                        Thêm vào giỏ </button>
+                        </form>
                     </div>
-                    <!-- /product -->
                 </div>
-                <div id="slick-nav-1" class="products-slick-nav"></div>
+
+                @endforeach
             </div>
-            <!-- /tab -->
+            <!-- /product -->
         </div>
-    </div><br />
-    <div class="comment col-md-12">
-        @foreach($danhgias as $item)
-        <div class="user-info">
-            <img src="{{asset('./img')}}/{{$item->user->anh}}" alt="User Avatar">
-            <h4>{{$item->user->hoten}}</h4>
-        </div>
-        <p class="comment-text">{{$item->BinhLuan}} <label class="pull-right" style="font-size: 15px;">{{$item->NgayLap}}</label></p>
-        
-        @endforeach
-            <div class="form-group">
-                <form action="/{{$thietbi->id}}/danhgiathietbi" method="post">
-                    @csrf
-                    <label for="description">Bình Luận :</label>
-                    <textarea class="form-control" id="binhluan" name="binhluan" rows="5">{{ old('binhluan') }}</textarea>
-                        <br/>
-                    <label for="sosao">Đánh giá : </label>
-                    <select name="sosao" style="width: 50px;font-size: 20px;">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                    <i class="fa fa-star"></i>
-                    <button type="submit" name="send" value="send" class="btn btn-primary pull-right">Comment</button>
-                </form>
-            </div>
+        <div id="slick-nav-1" class="products-slick-nav"></div>
     </div>
+    <!-- /tab -->
+</div>
+</div><br />
+<div class="comment col-md-12">
+    @foreach($danhgias as $item)
+    <div class="user-info">
+        <img src="{{asset('./img')}}/{{$item->user->anh}}" alt="User Avatar">
+        <h4>{{$item->user->hoten}}</h4>
+    </div>
+    <p class="comment-text">{{$item->BinhLuan}} <label class="pull-right" style="font-size: 15px;">{{$item->NgayLap}}</label></p>
+
+    @endforeach
+    <div class="form-group">
+        <form action="/{{$thietbi->id}}/danhgiathietbi" method="post">
+            @csrf
+            <label for="description">Bình Luận :</label>
+            <textarea class="form-control" id="binhluan" name="binhluan" rows="5">{{ old('binhluan') }}</textarea>
+            <br />
+            <label for="sosao">Đánh giá : </label>
+            <select name="sosao" style="width: 50px;font-size: 20px;">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <i class="fa fa-star"></i>
+            <button type="submit" name="send" value="send" class="btn btn-primary pull-right">Comment</button>
+        </form>
+    </div>
+</div>
 </div>
 <!-- Products tab & slick -->
 </div>
