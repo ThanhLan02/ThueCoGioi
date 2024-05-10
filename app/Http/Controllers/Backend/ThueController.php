@@ -200,22 +200,25 @@ class ThueController extends Controller
     }
     public function donhang()
     {
-        $hoadons = DB::table('hoadon')->where('NguoiNhan', Session::get('user'))->get();
+        $hoadons = DB::table('hoadon')->where('NguoiNhan', Session::get('user'))->paginate(5);
         return view('donhang',compact('hoadons'));
     }
     
     public function duyetdon()
     {
-        $cthdtbs = DB::table('chitiethd_thietbi')->join('hoadon', 'chitiethd_thietbi.HoaDon_ID', '=', 'hoadon.id')
-        ->join('thietbi', 'chitiethd_thietbi.ThietBi_ID', '=', 'thietbi.id')
-        ->where('NCT_ID', Session::get('user'))
-        ->select('chitiethd_thietbi.id', 'chitiethd_thietbi.HoaDon_ID','chitiethd_thietbi.ThietBi_ID','chitiethd_thietbi.soluong','chitiethd_thietbi.dongia','chitiethd_thietbi.TinhTrang', 'thietbi.TenTB AS TenTB', 'hoadon.NguoiNhan AS NguoiNhan')
-        ->get();
-        $cthdtxs = DB::table('chitiethd_taixe')->join('hoadon', 'chitiethd_taixe.HoaDon_ID', '=', 'hoadon.id')
-        ->join('taixe', 'chitiethd_taixe.TaiXe_ID', '=', 'taixe.id')
-        ->where('NCT_ID', Session::get('user'))
-        ->select('chitiethd_taixe.id', 'chitiethd_taixe.HoaDon_ID','chitiethd_taixe.TaiXe_ID','chitiethd_taixe.dongia','chitiethd_taixe.TinhTrang', 'taixe.TenTX AS TenTX', 'hoadon.NguoiNhan AS NguoiNhan')
-        ->get();
+        // $cthdtbs = DB::table('chitiethd_thietbi')->join('hoadon', 'chitiethd_thietbi.HoaDon_ID', '=', 'hoadon.id')
+        // ->join('thietbi', 'chitiethd_thietbi.ThietBi_ID', '=', 'thietbi.id')
+        // ->where('NCT_ID', Session::get('user'))
+        // ->select('chitiethd_thietbi.id', 'chitiethd_thietbi.HoaDon_ID','chitiethd_thietbi.ThietBi_ID','chitiethd_thietbi.soluong','chitiethd_thietbi.dongia','chitiethd_thietbi.TinhTrang', 'thietbi.TenTB AS TenTB', 'hoadon.NguoiNhan AS NguoiNhan')
+        // ->get();
+        // $cthdtxs = DB::table('chitiethd_taixe')->join('hoadon', 'chitiethd_taixe.HoaDon_ID', '=', 'hoadon.id')
+        // ->join('taixe', 'chitiethd_taixe.TaiXe_ID', '=', 'taixe.id')
+        // ->where('NCT_ID', Session::get('user'))
+        // ->select('chitiethd_taixe.id', 'chitiethd_taixe.HoaDon_ID','chitiethd_taixe.TaiXe_ID','chitiethd_taixe.dongia','chitiethd_taixe.TinhTrang', 'taixe.TenTX AS TenTX', 'hoadon.NguoiNhan AS NguoiNhan')
+        // ->get();
+
+        $cthdtbs = chitiethd_thietbi::where('NCT_ID',Session::get('user'))->paginate(5);
+        $cthdtxs = chitiethd_taixe::where('NCT_ID',Session::get('user'))->paginate(5);
         return view('duyetdon',compact('cthdtbs','cthdtxs'));
     }
     public function duyetdontb($id)
@@ -281,6 +284,14 @@ class ThueController extends Controller
             $hd = hoadon::findOrFail($chitiethd_taixe->HoaDon_ID);
             $hd->TinhTrang = "1";
             $hd->save();
+            $cthdtb = chitiethd_thietbi::where('HoaDon_ID',$hd->id)->get();
+            $cthdtx = chitiethd_taixe::where('HoaDon_ID',$hd->id)->get();
+            $nn = User::findOrFail($hd->NguoiNhan);
+            $mailuser = $nn->email;
+            Mail::send('guihoadon',compact('hd','cthdtb','cthdtx'), function($email) use($mailuser){
+                $email->subject('Xác nhận thuê');
+                $email->to($mailuser,'XÁC NHẬN THUÊ');
+            });
         }
 
         return redirect()->back()->with('Success','duyệt thành công');

@@ -38,6 +38,7 @@ class Dangkycontroller extends Controller
             'hoten'=>'string|required|min:3',
             'email'=>'string|required|unique:users,email',
             'password'=>'required|min:6',
+            'repassword'=>'required|min:6|same:password',
         ]);
         $data=$request->all();
         //dd($data);

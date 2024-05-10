@@ -35,10 +35,10 @@
                                 <button type="submit" name="send" value="send" class="btn btn-primary align-center"><i class="fa fa-pencil"></i></button>
                             </form>
                         </td>
-                        <td>{{$thietbi->TongTien}} VNĐ</td>
+                        <td>{{number_format($thietbi->TongTien,0)}} VNĐ</td>
 
                         <td><a href="/hoso/{{$thietbi->thietbi->user->id}}">{{$thietbi->thietbi->user->hoten}}</a></td>
-                        <td><a href="" class="btn btn-sm rounded-0 btn-danger" title="Thuê">Cập nhật</i></a>
+                        <td>
                             <form action="{{route('thuethietbi.deleteghtb',$thietbi->id)}}" method="post">
                                 @csrf
                                 <button type="submit" name="send" value="send" class="btn btn-primary align-center">Xóa</button>
@@ -77,7 +77,7 @@
                         <tr>
                             <td><a href="/{{$taixe->TaiXe_ID}}/chitiettaixe">{{$taixe->TaiXe_Ten}} </a></td>
                             <td><img src="./img/{{$taixe->TaiXe_Anh}}" alt="" style="width: 300px;height: 300px;"></td>
-                            <td>{{$taixe->TongTien}} VNĐ</td>
+                            <td>{{number_format($taixe->TongTien,0)}} VNĐ</td>
 
                             <td>{{$taixe->taixe->user->hoten}}</td>
                             <td>

@@ -39,7 +39,7 @@ $file = './img/SCC550A单行本-英文-20180507.pdf';
                         <span class="review-no">{{$taixe->SoDanhGia}}</span>
                     </div>
                     <p class="product-description">{{$taixe->MoTa}}</p>
-                    <h4 class="price">Giá thuê: <span>{{$taixe->GiaThue}} VNĐ/Ngày</span></h4>
+                    <h4 class="price">Giá thuê: <span>{{number_format($taixe->GiaThue,0)}} VNĐ/Ngày</span></h4>
                     <p class="vote"><strong>{{$SoSao}} <i class="fa fa-star"></i></strong> Đánh giá cao thiết bị này <strong>({{$SoDanhGia}} đánh giá)</strong></p>
                     <!-- <h5 class="sizes">sizes:
 							<span class="size" data-toggle="tooltip" title="small">s</span>
@@ -59,16 +59,7 @@ $file = './img/SCC550A单行本-英文-20180507.pdf';
                         <button class="add-to-cart btn btn-default" type="submit"><i class="fa fa-shopping-cart"></i>
                             Thêm vào giỏ </button>
                         </form>
-                        <?php
-
-
-                        if (file_exists($file)) {
-                            echo '<a href="' . $file . '" target="_blank"><button class="add-to-cart btn btn-default" type="button">Xem file chi tiết</button></a>';
-                        } else {
-                            echo 'File not found.';
-                        }
-
-                        ?>
+                        <a href="{{asset('./img')}}/{{$taixe->File}}" target="_blank"><button class="add-to-cart btn btn-default" type="button">Xem file chi tiết</button></a>
                         <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
                     </div>
                 </div>
@@ -111,7 +102,7 @@ $file = './img/SCC550A单行本-英文-20180507.pdf';
                                 <div class="product-body">
                                     <p class="product-category">Tài Xế</p>
                                     <h3 class="product-name"><a href="#">{{$tb->TenTX}}</a></h3>
-                                    <h4 class="product-price">{{$tb->GiaKM}} VNĐ <del class="product-old-price">{{$tb->GiaThue}} VNĐ</del></h4>
+                                    <h4 class="product-price">{{number_format($tb->GiaKM,0)}} VNĐ <del class="product-old-price">{{number_format($tb->GiaThue,0)}} VNĐ</del></h4>
                                     <div class="product-rating">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>

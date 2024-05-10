@@ -27,10 +27,10 @@
                     @foreach($cthdtbs as $item)
                     <tr>
                         <td>{{$item->HoaDon_ID}}</td>
-                        <td> <a href="/{{$item->ThietBi_ID}}/chitietthietbi">{{$item->TenTB}}</a></td>
+                        <td> <a href="/{{$item->ThietBi_ID}}/chitietthietbi">{{$item->thietbi->TenTB}}</a></td>
                         <td>{{$item->soluong}}</td>
                         <td>{{$item->dongia}}</td>
-                        <td><a href="/hoso/{{$item->NguoiNhan}}">{{$item->NguoiNhan}}</a></td>
+                        <td><a href="/hoso/{{$item->hd->NguoiNhan}}">{{$item->hd->nhan->hoten}}</a></td>
                         @if($item->TinhTrang == 0)
                         <td>Đang chờ duyệt</td>
                         @elseif($item->TinhTrang == -1)
@@ -57,6 +57,7 @@
 
                     </tr>@endforeach
                 </table>
+                {{$cthdtbs->links('pagination::bootstrap-4')}}
             </div>
         </div>
         <h3 class="fw-bolder">Tài Xế</h3>
@@ -75,9 +76,9 @@
                     <tr>
 
                         <td>{{$item->HoaDon_ID}}</td>
-                        <td> <a href="/{{$item->TaiXe_ID}}/chitiettaixe">{{$item->TenTX}}</a></td>
+                        <td> <a href="/{{$item->TaiXe_ID}}/chitiettaixe">{{$item->taixe->TenTX}}</a></td>
                         <td>{{$item->dongia}}</td>
-                        <td><a href="/hoso/{{$item->NguoiNhan}}">{{$item->NguoiNhan}}</a></td>
+                        <td><a href="/hoso/{{$item->hd->NguoiNhan}}">{{$item->hd->nhan->hoten}}</a></td>
                         @if($item->TinhTrang == 0)
                         <td>Đang chờ duyệt</td>
                         @else
@@ -102,6 +103,7 @@
 
                     </tr>@endforeach
                 </table>
+                {{$cthdtxs->links('pagination::bootstrap-4')}}
             </div>
         </div>
 

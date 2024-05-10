@@ -39,7 +39,7 @@ $file = './img/SCC550A单行本-英文-20180507.pdf';
                         <span class="review-no">{{$thietbi->SoDanhGia}}</span>
                     </div>
                     <p class="product-description">{{$thietbi->MoTa}}</p>
-                    <h4 class="price">Giá thuê: <span>{{$thietbi->GiaThue}} VNĐ/Ngày</span></h4>
+                    <h4 class="price">Giá thuê: <span>{{number_format($thietbi->GiaThue,0)}} VNĐ/Ngày</span></h4>
                     <p class="vote"><strong>{{$SoSao}} <i class="fa fa-star"></i></strong> Đánh giá cao thiết bị này <strong>({{$SoDanhGia}} đánh giá)</strong></p>
                     <!-- <h5 class="sizes">sizes:
 							<span class="size" data-toggle="tooltip" title="small">s</span>
@@ -115,7 +115,7 @@ $file = './img/SCC550A单行本-英文-20180507.pdf';
                                 <div class="product-body">
                                     <p class="product-category">{{$tb->loai->TenLoai}}</p>
                                     <h3 class="product-name"><a href="#">{{$tb->TenTB}}</a></h3>
-                                    <h4 class="product-price">{{$tb->GiaKM}} VNĐ <del class="product-old-price">{{$tb->GiaThue}} VNĐ</del></h4>
+                                    <h4 class="product-price">{{number_format($tb->GiaKM,0)}} VNĐ <del class="product-old-price">{{number_format($tb->GiaThue,0)}} VNĐ</del></h4>
                                     <div class="product-rating">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>

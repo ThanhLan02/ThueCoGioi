@@ -32,7 +32,7 @@ class ThietBiController extends Controller
     }
     public function index(){
 
-        $thietbis = thietbi::paginate(5);
+        $thietbis = thietbi::paginate(5);//Phân trang
         $khuyenmais = Khuyenmai::paginate(15);
         $loais = loaixe::paginate(15);
         $hangs = hang::paginate(15);
@@ -56,7 +56,7 @@ class ThietBiController extends Controller
             //dd($payload);
             $model = $this->model->create($payload);
             $model->fresh();
-            DB::commit();
+            DB::commit();//Lưu
             return true;
         }catch(\Exception $e){
             DB::rollBack();
@@ -105,14 +105,7 @@ class ThietBiController extends Controller
     }
     public function updatetb(Request $request, $id)
     {
-        // if($this->updateu($id,$request))
-        // {
-        //     return redirect()->route('admin.users')->with('Success','Cập nhật thành công');
-        // }
-        // else
-        // {
-        //     return redirect()->route('admin.users')->with('error','Cập nhật không thành công');
-        // }
+
         $thietbi=thietbi::findOrFail($id);
         // dd($request->all());
         $data=$request->all();

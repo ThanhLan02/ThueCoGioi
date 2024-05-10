@@ -99,7 +99,7 @@
                         <div class="form-group" style="display: none;">
                             <input type="text" class="form-control" name="NguoiDung_ID" value="{{Session::get('user')}}">
                         </div>
-                        <button type="submit" name="send" value="send" class="btn btn-primary align-center">Thêm Thiết bị mới</button>
+                        <button type="submit" name="send" value="send" class="btn btn-primary align-center">Thêm Tài xế mới</button>
                 </div>
                 <br />
                 </form>

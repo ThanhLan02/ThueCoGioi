@@ -111,7 +111,7 @@ class ThietbiUserController extends Controller
             return false;
         }
     }
-    public function updatetbu(Request $request, $id)
+    public function updatetbm(Request $request, $id)
     {
         // if($this->updateu($id,$request))
         // {
@@ -152,9 +152,9 @@ class ThietbiUserController extends Controller
 
         if ($thietbi) {
             $thietbi->delete();
-            return redirect()->route('admin.thietbi')->with('Success','Xóa thành công');
+            return redirect()->route('thietbiuser.thietbiuser')->with('Success','Xóa thành công');
         } else {
-            return redirect()->route('admin.thietbi')->with('Success','Xóa không thành công');
+            return redirect()->route('thietbiuser.thietbiuser   ')->with('Success','Xóa không thành công');
         }
     }
 }

@@ -25,7 +25,7 @@
                             
                             <h3 class="my-3">{{$User->hoten}}</h3>
                             <div class="d-flex justify-content-center mb-2">
-                            <button type="button" class="btn btn-success ms-1"><a href="/{{$User->id}}/updatehoso">Cập nhật hồ sơ </a></button>
+                            <button type="button" class="btn btn-success ms-1"><a href="/{{Session::get('user')}}/updatehoso">Cập nhật hồ sơ </a></button>
                                 <button type="button" class="btn btn-outline-primary ms-1"><a href="/thietbiuser">Quản lý cho thuê thiết bị</a></button>
                                 <button type="button" class="btn btn-outline-primary ms-1"><a href="/taixeuser">Quản lý cho thuê tài xế</a></button>
                                 <button type="button" class="btn btn-outline-primary ms-1"><a href="/donhang">Lịch sử giao dịch </a></button>

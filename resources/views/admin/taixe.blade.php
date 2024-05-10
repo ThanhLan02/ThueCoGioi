@@ -88,7 +88,12 @@
                                 <a href="{{( route('admin.deletetaixe',$taixe->id) )}}" class="btn btn-sm rounded-0 btn-danger" title="delete"><i class="fas fa-trash"></i></a>
                                 <form action="{{route('admin.duyettx',$taixe->id)}}" method="post">
                                     @csrf
+                                    @if($taixe->TrangThai == 0)
                                     <button type="submit" name="send" value="send" class="btn btn-primary align-center">Duyệt</button>
+                                    @else
+                                    <td></td>
+                                    @endif
+                                    
                                 </form>
                             </td>
                         </tr>

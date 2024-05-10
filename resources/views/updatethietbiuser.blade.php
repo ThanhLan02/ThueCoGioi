@@ -8,7 +8,7 @@
             <div class="form_main">
                 <h4 class="heading"><strong>Cập nhật </strong> Thiết bị<span></span></h4>
                 <div class="form">
-                    <form action="{{route('thietbiuser.updatetbu',$thietbi->id)}}" method="post">
+                    <form action="{{route('thietbiuser.updatetbm',$thietbi->id)}}" method="post">
                         @csrf
                         <div class="form-group">
                             <label for="">Tên Thiết bị</label>

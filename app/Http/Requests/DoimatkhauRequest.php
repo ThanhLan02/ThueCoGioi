@@ -26,14 +26,12 @@ class DoimatkhauRequest extends FormRequest
         return [
             'password' => 'required',
             'repassword' => 'required|same:password',
-            'email' => 'required',
         ];
     }
     public function messages()
     {
         return [
             'password.required' => 'Bạn chưa nhập mật khẩu',
-            'email.required' => 'Bạn chưa nhập email',
             'repassword.same' => 'Mật khẩu không khớp',
             'repassword.required' => 'Bạn chưa nhập lại mật khẩu'
         ];

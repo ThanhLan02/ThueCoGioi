@@ -37,11 +37,6 @@
                                 <span class="error-message">* {{ $errors->first('password') }}</span>
                                 @endif
                             </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input name="remember" type="checkbox" value="Remember Me"> Remember Me
-                                </label>
-                            </div>
                             <input class="btn btn-lg btn-success btn-block" type="submit" value="Login"><br />
                             <h5 class="text-center"><a href="/quenmatkhau" class="text-left">Quên mật khẩu</a> - <a href="/Dangky" class="text-right">Đăng ký</a></h5>
 

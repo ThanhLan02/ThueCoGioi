@@ -98,6 +98,13 @@ class AuthController extends Controller
         $mail = $request->input('email');
         if($find)
         {
+            Session::put('emaildoimatkhau',$request->input('email'));
+            $xoa = reset_code::all();
+            foreach($xoa as $item)
+            {
+                $x = reset_code::findOrFail($item->id);
+                $x->delete();
+            }
             return view('auth.doimatkhau',compact('mail'));
         }
     }
@@ -107,7 +114,7 @@ class AuthController extends Controller
     }
     public function doimatkhaustore(DoimatkhauRequest $request)
     {
-        $user = User::where('email',$request->input('email'))->first();
+        $user = User::where('email',Session::get('emaildoimatkhau'))->first();
         $user->password = Hash::make($request->input('password'));
         $user->save();
         return redirect()->route('auth.login')->with('success','Đổi mật khẩu thành công');

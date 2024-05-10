@@ -9,7 +9,7 @@
     <h2>Phiếu xác nhận Thanh toán: <b style="border-color: red; border-style: solid;color:red">ĐÃ THANH TOÁN</b></h2>
     Mã đơn: <b> {{$hd->id}} </b> <br>
     Ngày lập: <b> {{$hd->NgayLap}} </b><br>
-
+    Địa chỉ: <b> {{$hd->DiaChi}} </b><br>
     <div style="background-color:#ddd;margin-top:8px">
         <div style="margin-left:8px">
         <b> Thiết bị </b><br>
@@ -25,7 +25,7 @@
                     <td>{{$item->HoaDon_ID}}</td>
                     <td> {{$item->thietbi->TenTB}}</td>
                     <td>{{$item->soluong}}</td>
-                    <td>{{$item->dongia}}</td>
+                    <td>{{number_format($item->dongia,0)}}</td>
 
 
                 </tr>@endforeach
@@ -43,11 +43,11 @@
                 <tr>
                     <td>{{$item->HoaDon_ID}}</td>
                     <td> {{$item->taixe->TenTX}}</td>
-                    <td>{{$item->dongia}}</td>
+                    <td>{{number_format($item->dongia,0)}}</td>
                 </tr>@endforeach
                 
             </table>
-            Tổng Tiền: <b> {{$hd->TongTien}} </b><br>
+            Tổng Tiền: <b> {{number_format($hd->TongTien,0)}} </b><br>
         </div>
     </div>
 

@@ -39,7 +39,7 @@ class TrangchuController extends Controller
         $s2 = taixe::where('TrangThai',1)->count();
         $tong = $s1+$s2;
         $hang = hang::all();
-        $hot = thietbi::where('SoSao',5)->get();
+        $hot = thietbi::select('*')->where('SoSao','>','4')->paginate(3);
         return view('thietbitaixe',compact('thietbis','taixes','tong','s1','s2','hang','hot'));
     }
     public function thietbiall(){
@@ -48,7 +48,7 @@ class TrangchuController extends Controller
         $s2 = taixe::where('TrangThai',1)->count();
         $tong = $s1+$s2;
         $hang = hang::all();
-        $hot = taixe::where('SoSao',5)->get();
+        $hot = thietbi::select('*')->where('SoSao','>','4')->paginate(3);
         return view('thietbiall',compact('thietbis','tong','s1','s2','hang','hot'));
     }
     public function hangthietbiall($id){
@@ -57,7 +57,7 @@ class TrangchuController extends Controller
         $s2 = taixe::where('TrangThai',1)->count();
         $tong = $s1+$s2;
         $hang = hang::all();
-        $hot = taixe::where('SoSao',5)->get();
+        $hot = taixe::select('*')->where('SoSao','>','4')->paginate(3);
         return view('hangthietbiall',compact('thietbis','tong','s1','s2','hang','hot','id'));
     }
     public function taixeall(){
@@ -75,8 +75,10 @@ class TrangchuController extends Controller
         $thietbi = thietbi::findOrFail($id);
         $danhgias = danhgia::where('ThietBi_ID',$id)->get();
         $anh_tb = anh_tb::where('ThietBi_ID',$id)->get();
-        $SoSao = danhgia::where('ThietBi_ID',$id)->sum('SoSao');
+        
         $SoDanhGia = danhgia::where('ThietBi_ID',$id)->count();
+        $SoSao = danhgia::where('ThietBi_ID',$id)->sum('SoSao')/$SoDanhGia;
+        $SoSao = number_format($SoSao, 1, '.', '');
         return view('chitietthietbi',compact('thietbis','anh_tb','danhgias','SoSao','SoDanhGia'))->with('thietbi',$thietbi);
     }
     public function chitiettaixe($id)

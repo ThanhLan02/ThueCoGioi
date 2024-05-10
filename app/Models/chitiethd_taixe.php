@@ -17,7 +17,7 @@ class chitiethd_taixe extends Model
 
     ];
     protected $table = 'chitiethd_taixe';
-    public function hoadon ()
+    public function hd ()
     {
         return $this->belongsTo(hoadon::class, 'HoaDon_ID', 'id');
     }

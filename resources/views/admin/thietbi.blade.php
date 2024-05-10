@@ -40,8 +40,8 @@
                     <tfoot>
                         <tr>
                             <th>Mã</th>
-                            <th>Mô Tả</th>
                             <th>Tên</th>
+                            <th>Mô Tả</th>
                             <th>File PDF</th>
                             <th>Ảnh</th>
                             <th>Giá Thuê</th>
@@ -66,7 +66,12 @@
                             <td><img src="./img/{{$thietbi->Anh}}" alt="" style="width: 200px;height: 200px;"></td>
                             <td>{{$thietbi->GiaThue}}</td>
                             <td>{{$thietbi->GiaKM}}</td>
-                            <td>{{$thietbi->TinhTrang}}</td>
+                            
+                                @if($thietbi->TinhTrang != 1)
+                                <td>Đang chờ duyệt</td>
+                                @else
+                                <td>Đã duyệt</td>
+                                @endif
                             <td>{{$thietbi->loai->TenLoai}}</td>
                             <td>{{$thietbi->hang->TenHang}}</td>
                             <td>{{$thietbi->khuyenmai->TenKM}}</td>
@@ -77,7 +82,10 @@
                                 <a href="{{( route('admin.deletethietbi',$thietbi->id) )}}" class="btn btn-sm rounded-0 btn-danger" title="delete"><i class="fas fa-trash"></i></a>
                                 <form action="{{route('admin.duyettb',$thietbi->id)}}" method="post">
                                     @csrf
+                                    @if($thietbi->TinhTrang != 1)
                                     <button type="submit" name="send" value="send" class="btn btn-primary align-center">Duyệt</button>
+                                    @else
+                                    @endif
                                 </form>
                             </td>
                         </tr>

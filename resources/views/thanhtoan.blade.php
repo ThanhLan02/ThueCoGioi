@@ -6,7 +6,7 @@
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="card rounded-0 shadow text-center">
 				<div class="card-header">
-					<div class="card-title h6 fw-bold">Nhập thông tin để thanh toán</div>
+					<div class="card-title h2 bold" >Nhập thông tin để thanh toán</div>
 				</div>
 				<div class="card-body container-fluid">
 					<form method="post" class="form-horizontal" action="{{( route('thuethietbi.thanhtoanstore') )}}">

@@ -32,8 +32,8 @@
         <div class="row">
             <div class="col-md-12">
                 <ul class="breadcrumb-tree">
-                    <li><a href="#">Trang Chủ</a></li>
-                    <li><a href="#">Tất cả thiết bị & tài xế</a></li>
+                    <li><a href="/index">Trang Chủ</a></li>
+                    <li><a href="/thietbitaixe">Tất cả thiết bị & tài xế</a></li>
                     <li><a href="#">Thuê</a></li>
 					<li class="active">Thiết bị ({{$s1}} Kết quả)</li>
                 </ul>
@@ -72,7 +72,7 @@
                             <label for="category-2">
                                 <span></span>
                                 <a href="/taixeall">Tài xế</a>
-                                <small>({{$s1}})</small>
+                                <small>({{$s2}})</small>
                             </label>
                         </div>
                     </div>
@@ -121,31 +121,7 @@
 
             <!-- STORE -->
             <div id="store" class="col-md-9">
-                <!-- store top filter -->
-                <div class="store-filter clearfix">
-                    <div class="store-sort">
-                        <label>
-                            Sort By:
-                            <select class="input-select">
-                                <option value="0">Thiết bị</option>
-                                <option value="1">Tài xế</option>
-                            </select>
-                        </label>
-
-                        <label>
-                            Show:
-                            <select class="input-select">
-                                <option value="0">20</option>
-                                <option value="1">50</option>
-                            </select>
-                        </label>
-                    </div>
-                    <ul class="store-grid">
-                        <li class="active"><i class="fa fa-th"></i></li>
-                        <li><a href="#"><i class="fa fa-th-list"></i></a></li>
-                    </ul>
-                </div>
-                <!-- /store top filter -->
+                
 
                 <!-- store products -->
                 <div class="row">
@@ -153,7 +129,8 @@
                     @foreach($thietbis as $thietbi)
                     <form action="{{ route('thuethietbi.themgiohang') }}" method="POST">
                         @csrf
-                        <div class="col-md-4 col-xs-6">
+                        <div class="col-md-4 col-xs-6" style="height: 520px;">
+                        
                             <div class="product">
                                 <div class="product-img">
                                     <img src="./img/{{$thietbi->Anh}}" alt="">
@@ -165,7 +142,7 @@
                                 <div class="product-body">
                                     <p class="product-category">{{$thietbi->loai->TenLoai}}</p>
                                     <h3 class="product-name"><a href="/{{$thietbi->id}}/chitietthietbi">{{$thietbi->TenTB}}</a></h3>
-                                    <h4 class="product-price">{{$thietbi->GiaKM}} VNĐ <del class="product-old-price">{{$thietbi->GiaThue}} VNĐ</del></h4>
+                                    <h4 class="product-price">{{number_format($thietbi->GiaKM,0)}} VNĐ <del class="product-old-price">{{number_format($thietbi->GiaThue,0)}} VNĐ</del></h4>
                                     <div class="product-rating">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
@@ -187,6 +164,7 @@
                                         Thêm vào giỏ hàng </button>
                                 </div>
                             </div>
+                           
                         </div>
                         @endforeach
                         <!-- /product -->

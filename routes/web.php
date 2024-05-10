@@ -32,6 +32,7 @@ use Illuminate\Support\Facades\Response;
 // Route::get('/', function () {
 //     return view('index');
 // });
+//ĐỊNH TUYẾN
 Route::get('/', [TrangchuController::class, 'index'])->name('Trangchu.index');
 
 Route::get('index', [TrangchuController::class, 'index'])->name('Trangchu.index');
@@ -68,14 +69,18 @@ Route::get('thietbiusercreate', [ThietbiUserController::class, 'thietbiusercreat
 Route::post('thietbiuserstore', [ThietbiUserController::class, 'thietbiuserstore'])->name('thietbiuser.thietbiuserstore')->middleware(AuthenticateMiddleware::class);
 Route::get('{id}/updatethietbiuser', [ThietbiUserController::class, 'updatethietbiuser'])->where(['id' => '[0-9]+'])->name
 ('thietbiuser.updatethietbiuser')->middleware(AuthenticateMiddleware::class);
-Route::post('{id}/updatetbu', [ThietbiUserController::class, 'updatetbu'])->where(['id' => '[0-9]+'])->name
-('thietbiuser.updatetbu')->middleware(AuthenticateMiddleware::class);
+// Route::post('{id}/updatetbu', [ThietbiUserController::class, 'updatetbu'])->where(['id' => '[0-9]+'])->name
+// ('thietbiuser.updatetbu')->middleware(AuthenticateMiddleware::class);
+
+Route::post('{id}/updatetbm', [ThietbiUserController::class, 'updatetbm'])->where(['id' => '[0-9]+'])->name
+('thietbiuser.updatetbm')->middleware(AuthenticateMiddleware::class);
 Route::get('{id}/deletethietbiuser', [ThietbiUserController::class, 'deletethietbiuser'])->where(['id' => '[0-9]+'])->name
 ('thietbiuser.deletethietbiuser')->middleware(AuthenticateMiddleware::class);
 Route::get('{id}/themanhtbuser', [ThietbiUserController::class, 'themanhtbuser'])
 ->where(['id' => '[0-9]+'])->name('thietbiuser.themanhtbuser')->middleware(AuthenticateMiddleware::class);
 Route::post('{id}/themanhtbuserstore', [ThietbiUserController::class, 'themanhtbuserstore'])->where(['id' => '[0-9]+'])
 ->name('thietbiuser.themanhtbuserstore')->middleware(AuthenticateMiddleware::class);
+
 
 
 Route::get('taixeuser', [TaixeUserController::class, 'index'])->name('taixeuser.taixeuser')->middleware(AuthenticateMiddleware::class);

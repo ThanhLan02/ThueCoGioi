@@ -18,7 +18,7 @@
                                 <label for="username">Tên</label>
                                 <input class="form-control" placeholder="Nhập tên người dùng" name="hoten" value="{{(old('hoten'))}}" type="text">
                                 @if ($errors->has('hoten'))
-                                <span class="error-message">* {{ $errors->first('hoten') }}</span>
+                                <span class="error-message" style="color: red;">* {{ $errors->first('hoten') }}</span>
                                 @endif
                             </div>
                             <div class="form-group">
@@ -44,20 +44,22 @@
                                 <label for="username">Email</label>
                                 <input class="form-control" placeholder="Nhập Email" name="email" value="{{(old('email'))}}" type="text">
                                 @if ($errors->has('email'))
-                                <span class="error-message">* {{ $errors->first('email') }}</span>
+                                <span class="error-message" style="color: red;">* {{ $errors->first('email') }}</span>
                                 @endif
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Mật khẩu</label>
                                 <input type="password" class="form-control" placeholder="Nhập Pasword" name="password">
                                 @if ($errors->has('password'))
-                                <span class="error-message">* {{ $errors->first('password') }}</span>
+                                <span class="error-message" style="color: red;">* {{ $errors->first('password') }}</span>
                                 @endif
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Nhập lại Mật khẩu</label>
                                 <input type="password" class="form-control" placeholder="Nhập lại Pasword" name="repassword">
-                                
+                                @if ($errors->has('repassword'))
+                                <span class="error-message" style="color: red;">* {{ $errors->first('repassword') }}</span>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="username">Địa chỉ</label>

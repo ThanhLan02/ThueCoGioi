@@ -90,8 +90,8 @@
                             <img src="./img/{{$item->Anh}}" alt="">
                         </div>
                         <div class="product-body">
-                            <p class="product-category"><a href="/{{$item->id}}/chitietthietbi">{{$item->loai->TenLoai}} </a></p>
-                            <h3 class="product-name"><a href="#">{{$item->TenTB}}</a></h3>
+                            <p class="product-category"><a href="">{{$item->loai->TenLoai}} </a></p>
+                            <h3 class="product-name"><a href="/{{$item->id}}/chitietthietbi">{{$item->TenTB}}</a></h3>
                             <h4 class="product-price">{{number_format($item->GiaKM, 0)}} VNĐ<del class="product-old-price">{{number_format($item->GiaThue, 0)}} VNĐ</del></h4>
                         </div>
                     </div>
@@ -104,31 +104,6 @@
 
             <!-- STORE -->
             <div id="store" class="col-md-9">
-                <!-- store top filter -->
-                <div class="store-filter clearfix">
-                    <div class="store-sort">
-                        <label>
-                            Sort By:
-                            <select class="input-select">
-                                <option value="0">Thiết bị</option>
-                                <option value="1">Tài xế</option>
-                            </select>
-                        </label>
-
-                        <label>
-                            Show:
-                            <select class="input-select">
-                                <option value="0">20</option>
-                                <option value="1">50</option>
-                            </select>
-                        </label>
-                    </div>
-                    <ul class="store-grid">
-                        <li class="active"><i class="fa fa-th"></i></li>
-                        <li><a href="#"><i class="fa fa-th-list"></i></a></li>
-                    </ul>
-                </div>
-                <!-- /store top filter -->
 
                 <!-- store products -->
                 <div class="row">
@@ -136,7 +111,7 @@
                     @foreach($thietbis as $thietbi)
                     <form action="{{ route('thuethietbi.themgiohang') }}" method="POST">
                         @csrf
-                        <div class="col-md-4 col-xs-6">
+                        <div class="col-md-4 col-xs-6" style="height: 520px;">
                             <div class="product">
                                 <div class="product-img">
                                     <img src="./img/{{$thietbi->Anh}}" alt="">
@@ -147,8 +122,8 @@
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category">{{$thietbi->loai->TenLoai}}</p>
-                                    <h3 class="product-name"><a href="#">{{$thietbi->TenTB}}</a></h3>
-                                    <h4 class="product-price">{{$thietbi->GiaKM}} VNĐ <del class="product-old-price">{{$thietbi->GiaThue}} VNĐ</del></h4>
+                                    <h3 class="product-name"><a href="/{{$thietbi->id}}/chitietthietbi">{{$thietbi->TenTB}}</a></h3>
+                                    <h4 class="product-price">{{number_format($thietbi->GiaKM,0)}} VNĐ <del class="product-old-price">{{number_format($thietbi->GiaThue,0)}} VNĐ</del></h4>
                                     <div class="product-rating">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
@@ -177,7 +152,7 @@
                         @foreach($taixes as $taixe)
                         <form action="{{ route('thuethietbi.themgiohangtx') }}" method="POST">
                             @csrf
-                            <div class="col-md-4 col-xs-6">
+                            <div class="col-md-4 col-xs-6" style="height: 520px;">
                                 <div class="product">
                                     <div class="product-img">
                                         <img src="./img/{{$taixe->Anh}}" alt="">
@@ -188,8 +163,8 @@
                                     </div>
                                     <div class="product-body">
                                         <p class="product-category">TÀI XẾ</p>
-                                        <h3 class="product-name"><a href="#">{{$taixe->TenTX}}</a></h3>
-                                        <h4 class="product-price">{{$taixe->GiaKM}} VNĐ <del class="product-old-price">{{$taixe->GiaThue}} VNĐ</del></h4>
+                                        <h3 class="product-name"><a href="/{{$taixe->id}}/chitiettaixe">{{$taixe->TenTX}}</a></h3>
+                                        <h4 class="product-price">{{number_format($taixe->GiaKM,0)}} VNĐ <del class="product-old-price">{{number_format($taixe->GiaThue,0)}} VNĐ</del></h4>
                                         <div class="product-rating">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -217,18 +192,6 @@
 
                 </div>
                 <!-- /store products -->
-
-                <!-- store bottom filter -->
-                <div class="store-filter clearfix">
-                    <span class="store-qty">Showing 20-100 products</span>
-                    <ul class="store-pagination">
-                        <li class="active">1</li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                    </ul>
-                </div>
                 <!-- /store bottom filter -->
             </div>
             <!-- /STORE -->

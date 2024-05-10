@@ -27,7 +27,6 @@
                                 <span class="error-message">* {{ $errors->first('repassword') }}</span>
                                 @endif
                             </div>
-                            <input class="form-control" name="email" type="text" value="{{$mail}}" style="display: none;">
                             <input class="btn btn-lg btn-success btn-block" type="submit" value="Đổi mật khẩu"><br />
                         </fieldset>
                     </form>

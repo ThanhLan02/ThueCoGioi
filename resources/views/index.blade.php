@@ -116,7 +116,7 @@
 										<div class="product-body">
 											<p class="product-category">{{$thietbi->loai->TenLoai}}</p>
 											<h3 class="product-name"><a href="{{$thietbi->id}}/chitietthietbi">{{$thietbi->TenTB}}</a></h3>
-											<h4 class="product-price">{{$thietbi->GiaThue}} VNĐ<br /><del class="product-old-price">{{$thietbi->GiaKM}} VNĐ</del></h4>
+											<h4 class="product-price">{{number_format($thietbi->GiaThue,0)}} VNĐ<br /><del class="product-old-price">{{number_format($thietbi->GiaKM,0)}} VNĐ</del></h4>
 											<div class="product-rating">
 												<i class="fa fa-star"></i>
 												<i class="fa fa-star"></i>
@@ -203,7 +203,7 @@
 										<div class="product-body">
 											<p class="product-category">Tài Xế</p>
 											<h3 class="product-name"><a href="{{$taixe->id}}/chitiettaixe">{{$taixe->TenTX}}</h3>
-											<h4 class="product-price">{{$taixe->GiaThue}} VNĐ<br /><del class="product-old-price">{{$taixe->GiaKM}} VNĐ</del></h4>
+											<h4 class="product-price">{{number_format($taixe->GiaThue,0)}} VNĐ<br /><del class="product-old-price">{{number_format($taixe->GiaKM,0)}} VNĐ</del></h4>
 											<div class="product-rating">
 												<i class="fa fa-star"></i>
 												<i class="fa fa-star"></i>
@@ -272,11 +272,7 @@
 							</div>
 							@endforeach
 							<!-- /product widget -->
-
-
 						</div>
-
-						
 					</div>
 				</div>
 
